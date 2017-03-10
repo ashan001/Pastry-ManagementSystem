@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{28BE9796-9F37-495B-B7C1-DCE9D79B7E13}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Pastry_ManagementSystem</RootNamespace>
+    <AssemblyName>Pastry ManagementSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DB\Database.cs" />
+    <Compile Include="Other\ProgressReport.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\AvailableRawMaterialScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AvailableRawMaterialScreen.Designer.cs">
+      <DependentUpon>AvailableRawMaterialScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BillScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BillScreen.Designer.cs">
+      <DependentUpon>BillScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Changepassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Changepassword.Designer.cs">
+      <DependentUpon>Changepassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CashierMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CashierMenu.Designer.cs">
+      <DependentUpon>CashierMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CustomerOrder.Designer.cs">
+      <DependentUpon>CustomerOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CustomerRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CustomerRegister.Designer.cs">
+      <DependentUpon>CustomerRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EmployeeDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EmployeeDetails.Designer.cs">
+      <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\EmployeeRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\EmployeeRegister.Designer.cs">
+      <DependentUpon>EmployeeRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ManagePayrol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ManagePayrol.Designer.cs">
+      <DependentUpon>ManagePayrol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ManagerMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ManagerMenu.Designer.cs">
+      <DependentUpon>ManagerMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PreparedFoodOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PreparedFoodOrder.Designer.cs">
+      <DependentUpon>PreparedFoodOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ProgressBar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ProgressBar.Designer.cs">
+      <DependentUpon>ProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RequiredItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RequiredItem.Designer.cs">
+      <DependentUpon>RequiredItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SearchSupplierMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SearchSupplierMessageBox.Designer.cs">
+      <DependentUpon>SearchSupplierMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SupplierDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SupplierDetails.Designer.cs">
+      <DependentUpon>SupplierDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SupplierRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SupplierRegister.Designer.cs">
+      <DependentUpon>SupplierRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SystemAdminMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SystemAdminMenu.Designer.cs">
+      <DependentUpon>SystemAdminMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateEmployee.Designer.cs">
+      <DependentUpon>UpdateEmployee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateSupplier.Designer.cs">
+      <DependentUpon>UpdateSupplier.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\AvailableRawMaterialScreen.resx">
+      <DependentUpon>AvailableRawMaterialScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BillScreen.resx">
+      <DependentUpon>BillScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Changepassword.resx">
+      <DependentUpon>Changepassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CashierMenu.resx">
+      <DependentUpon>CashierMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CustomerOrder.resx">
+      <DependentUpon>CustomerOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CustomerRegister.resx">
+      <DependentUpon>CustomerRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EmployeeDetails.resx">
+      <DependentUpon>EmployeeDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\EmployeeRegister.resx">
+      <DependentUpon>EmployeeRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ManagePayrol.resx">
+      <DependentUpon>ManagePayrol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ManagerMenu.resx">
+      <DependentUpon>ManagerMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PreparedFoodOrder.resx">
+      <DependentUpon>PreparedFoodOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ProgressBar.resx">
+      <DependentUpon>ProgressBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RequiredItem.resx">
+      <DependentUpon>RequiredItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SearchSupplierMessageBox.resx">
+      <DependentUpon>SearchSupplierMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SupplierDetails.resx">
+      <DependentUpon>SupplierDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SupplierRegister.resx">
+      <DependentUpon>SupplierRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SystemAdminMenu.resx">
+      <DependentUpon>SystemAdminMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateEmployee.resx">
+      <DependentUpon>UpdateEmployee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateSupplier.resx">
+      <DependentUpon>UpdateSupplier.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Contents\" />
+    <Folder Include="ServerSideImageFolder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\asdfds.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\kZivgm.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue_gradient_wallpaper_hd_20_color.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\1364243914_config.png" />
+    <Content Include="Resources\1364243918_graphic-design.png" />
+    <Content Include="Resources\1364243920_folder.png" />
+    <Content Include="Resources\1364243923_contact.png" />
+    <Content Include="Resources\1364243924_customers.png" />
+    <Content Include="Resources\1364243936_my-account.png" />
+    <Content Include="Resources\1364243940_check.png" />
+    <Content Include="Resources\1364243944_suppliers.png" />
+    <Content Include="Resources\1364243945_user.png" />
+    <Content Include="Resources\1364243947_sign-in.png" />
+    <Content Include="Resources\1364243953_logout.png" />
+    <Content Include="Resources\1364243956_refresh.png" />
+    <Content Include="Resources\1364243960_lightbulb.png" />
+    <Content Include="Resources\1364243971_sign-out.png" />
+    <Content Include="Resources\1364243984_settings.png" />
+    <Content Include="Resources\1384110565_Synchronize.png" />
+    <None Include="Resources\1488535914_search.png" />
+    <None Include="Resources\1488538476_icontexto-aurora-folders-pictures.png" />
+    <Content Include="Resources\Actions-list-add-user-icon.png" />
+    <Content Include="Resources\add-contact-icon.png" />
+    <Content Include="Resources\add-icon.png" />
+    <Content Include="Resources\alert-icon %281%29.png" />
+    <Content Include="Resources\arrow.png" />
+    <Content Include="Resources\arrow_1.png" />
+    <Content Include="Resources\arrow_2.png" />
+    <None Include="Resources\b388675ca707b60dde64716438bb8565.jpg" />
+    <Content Include="Resources\checklist-icon.png" />
+    <Content Include="Resources\close.png" />
+    <Content Include="Resources\close_1.png" />
+    <Content Include="Resources\dalete.png" />
+    <Content Include="Resources\dalete_1.png" />
+    <Content Include="Resources\database-add-icon.png" />
+    <Content Include="Resources\database-add-icon_1.png" />
+    <Content Include="Resources\delete-icon.png" />
+    <Content Include="Resources\delete-icon_1.png" />
+    <Content Include="Resources\edit.png" />
+    <Content Include="Resources\edit_1.png" />
+    <None Include="Resources\EmptyProfile.png" />
+    <Content Include="Resources\leave.png" />
+    <Content Include="Resources\leave_1.png" />
+    <Content Include="Resources\login.png" />
+    <Content Include="Resources\logout-icon.png" />
+    <Content Include="Resources\logout.png" />
+    <None Include="Resources\Our-Products.jpg" />
+    <Content Include="Resources\print.png" />
+    <Content Include="Resources\print_1.png" />
+    <Content Include="Resources\save.png" />
+    <Content Include="Resources\save_1.png" />
+    <Content Include="Resources\search-icon.png" />
+    <Content Include="Resources\search-icon_1.png" />
+    <Content Include="Resources\setting_f001-20111103133100-00002.png" />
+    <Content Include="Resources\sign_in.png" />
+    <None Include="Resources\Start-Menu-Search-icon.png" />
+    <Content Include="Resources\success-icon.png" />
+    <Content Include="Resources\Thumb-up-icon.png" />
+    <Content Include="Resources\Trash-icon.png" />
+    <Content Include="Resources\view.png" />
+    <Content Include="Resources\view_1.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
