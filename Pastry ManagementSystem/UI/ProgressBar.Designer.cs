@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgressBar));
             this.metroProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.btn_Start = new MetroFramework.Controls.MetroButton();
             this.lbl_Process = new MetroFramework.Controls.MetroLabel();
@@ -69,6 +70,7 @@
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.metroProgressBar);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "ProgressBar";
             this.Padding = new System.Windows.Forms.Padding(27, 69, 27, 23);

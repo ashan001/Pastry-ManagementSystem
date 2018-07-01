@@ -29,14 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PreparedFoodOrder));
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.btn_back = new MetroFramework.Controls.MetroButton();
             this.grid_foodMasterInfo = new System.Windows.Forms.DataGridView();
             this.cl_index1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cl_Index3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cl_index2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btn_cancle = new MetroFramework.Controls.MetroButton();
             this.btn_ok = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.FoodSearch = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txt_contactNum = new MetroFramework.Controls.MetroTextBox();
+            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.txt_empID = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.btn_Clear = new MetroFramework.Controls.MetroButton();
             this.btn_Add = new MetroFramework.Controls.MetroButton();
@@ -49,27 +59,33 @@
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.txt_empFName = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.txt_empID = new MetroFramework.Controls.MetroTextBox();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.lbl_welcome = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ordSearch = new System.Windows.Forms.Panel();
             this.txt_date = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.txt_orderID = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.errorProvider2 = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_foodMasterInfo)).BeginInit();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).BeginInit();
             this.SuspendLayout();
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // errorProvider2
+            // 
+            this.errorProvider2.ContainerControl = this;
             // 
             // metroPanel1
             // 
-            this.metroPanel1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.blue_gradient_wallpaper_hd_20_color;
+            this.metroPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroPanel1.BackgroundImage")));
             this.metroPanel1.Controls.Add(this.btn_back);
             this.metroPanel1.Controls.Add(this.grid_foodMasterInfo);
             this.metroPanel1.Controls.Add(this.btn_cancle);
@@ -90,12 +106,15 @@
             // 
             // btn_back
             // 
-            this.btn_back.Location = new System.Drawing.Point(1083, 384);
+            this.btn_back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_back.BackgroundImage")));
+            this.btn_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_back.Location = new System.Drawing.Point(1047, 378);
             this.btn_back.Name = "btn_back";
-            this.btn_back.Size = new System.Drawing.Size(106, 36);
+            this.btn_back.Size = new System.Drawing.Size(128, 39);
             this.btn_back.TabIndex = 21;
-            this.btn_back.Text = "Back";
+            this.btn_back.Text = "Exit";
             this.btn_back.UseSelectable = true;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
             // grid_foodMasterInfo
             // 
@@ -104,11 +123,12 @@
             this.grid_foodMasterInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grid_foodMasterInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cl_index1,
+            this.cl_Index3,
             this.cl_index2});
             this.grid_foodMasterInfo.GridColor = System.Drawing.SystemColors.ButtonFace;
             this.grid_foodMasterInfo.Location = new System.Drawing.Point(762, 52);
             this.grid_foodMasterInfo.Name = "grid_foodMasterInfo";
-            this.grid_foodMasterInfo.Size = new System.Drawing.Size(315, 368);
+            this.grid_foodMasterInfo.Size = new System.Drawing.Size(413, 320);
             this.grid_foodMasterInfo.TabIndex = 20;
             // 
             // cl_index1
@@ -116,6 +136,11 @@
             this.cl_index1.HeaderText = "Food No";
             this.cl_index1.Name = "cl_index1";
             this.cl_index1.Width = 135;
+            // 
+            // cl_Index3
+            // 
+            this.cl_Index3.HeaderText = "Order ID";
+            this.cl_Index3.Name = "cl_Index3";
             // 
             // cl_index2
             // 
@@ -125,18 +150,23 @@
             // 
             // btn_cancle
             // 
-            this.btn_cancle.Location = new System.Drawing.Point(1083, 326);
+            this.btn_cancle.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_cancle.BackgroundImage")));
+            this.btn_cancle.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_cancle.Location = new System.Drawing.Point(902, 378);
             this.btn_cancle.Name = "btn_cancle";
-            this.btn_cancle.Size = new System.Drawing.Size(106, 36);
+            this.btn_cancle.Size = new System.Drawing.Size(139, 39);
             this.btn_cancle.TabIndex = 19;
             this.btn_cancle.Text = "Cancle";
             this.btn_cancle.UseSelectable = true;
+            this.btn_cancle.Click += new System.EventHandler(this.btn_cancle_Click);
             // 
             // btn_ok
             // 
-            this.btn_ok.Location = new System.Drawing.Point(1083, 264);
+            this.btn_ok.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_ok.BackgroundImage")));
+            this.btn_ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_ok.Location = new System.Drawing.Point(762, 378);
             this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(106, 39);
+            this.btn_ok.Size = new System.Drawing.Size(134, 39);
             this.btn_ok.TabIndex = 18;
             this.btn_ok.Text = "OK";
             this.btn_ok.UseSelectable = true;
@@ -144,6 +174,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.FoodSearch);
+            this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Controls.Add(this.metroLabel7);
             this.groupBox2.Controls.Add(this.btn_Clear);
             this.groupBox2.Controls.Add(this.btn_Add);
@@ -156,13 +188,118 @@
             this.groupBox2.Controls.Add(this.metroLabel4);
             this.groupBox2.Controls.Add(this.txt_empFName);
             this.groupBox2.Controls.Add(this.metroLabel3);
-            this.groupBox2.Controls.Add(this.txt_empID);
-            this.groupBox2.Controls.Add(this.metroLabel2);
+            this.groupBox2.Enabled = false;
             this.groupBox2.Location = new System.Drawing.Point(13, 142);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(743, 278);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
+            // 
+            // FoodSearch
+            // 
+            this.FoodSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("FoodSearch.BackgroundImage")));
+            this.FoodSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.FoodSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.FoodSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.FoodSearch.Location = new System.Drawing.Point(467, 197);
+            this.FoodSearch.Name = "FoodSearch";
+            this.FoodSearch.Size = new System.Drawing.Size(39, 23);
+            this.FoodSearch.TabIndex = 22;
+            this.FoodSearch.Click += new System.EventHandler(this.FoodSearch_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txt_contactNum);
+            this.groupBox3.Controls.Add(this.metroLabel9);
+            this.groupBox3.Controls.Add(this.metroLabel2);
+            this.groupBox3.Controls.Add(this.txt_empID);
+            this.groupBox3.Location = new System.Drawing.Point(6, 0);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(731, 58);
+            this.groupBox3.TabIndex = 19;
+            this.groupBox3.TabStop = false;
+            // 
+            // txt_contactNum
+            // 
+            // 
+            // 
+            // 
+            this.txt_contactNum.CustomButton.Image = null;
+            this.txt_contactNum.CustomButton.Location = new System.Drawing.Point(193, 1);
+            this.txt_contactNum.CustomButton.Name = "";
+            this.txt_contactNum.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txt_contactNum.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txt_contactNum.CustomButton.TabIndex = 1;
+            this.txt_contactNum.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txt_contactNum.CustomButton.UseSelectable = true;
+            this.txt_contactNum.CustomButton.Visible = false;
+            this.txt_contactNum.Lines = new string[0];
+            this.txt_contactNum.Location = new System.Drawing.Point(473, 20);
+            this.txt_contactNum.MaxLength = 20;
+            this.txt_contactNum.Name = "txt_contactNum";
+            this.txt_contactNum.PasswordChar = '\0';
+            this.txt_contactNum.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txt_contactNum.SelectedText = "";
+            this.txt_contactNum.SelectionLength = 0;
+            this.txt_contactNum.SelectionStart = 0;
+            this.txt_contactNum.ShortcutsEnabled = true;
+            this.txt_contactNum.Size = new System.Drawing.Size(215, 23);
+            this.txt_contactNum.TabIndex = 7;
+            this.txt_contactNum.UseSelectable = true;
+            this.txt_contactNum.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txt_contactNum.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_contactNum.TextChanged += new System.EventHandler(this.txt_contactNum_TextChanged);
+            this.txt_contactNum.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_contactNum_KeyDown);
+            // 
+            // metroLabel9
+            // 
+            this.metroLabel9.AutoSize = true;
+            this.metroLabel9.Location = new System.Drawing.Point(349, 20);
+            this.metroLabel9.Name = "metroLabel9";
+            this.metroLabel9.Size = new System.Drawing.Size(87, 19);
+            this.metroLabel9.TabIndex = 6;
+            this.metroLabel9.Text = "Contact Num";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(16, 20);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel2.TabIndex = 4;
+            this.metroLabel2.Text = "Employee ID";
+            // 
+            // txt_empID
+            // 
+            // 
+            // 
+            // 
+            this.txt_empID.CustomButton.Image = null;
+            this.txt_empID.CustomButton.Location = new System.Drawing.Point(193, 1);
+            this.txt_empID.CustomButton.Name = "";
+            this.txt_empID.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txt_empID.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txt_empID.CustomButton.TabIndex = 1;
+            this.txt_empID.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txt_empID.CustomButton.UseSelectable = true;
+            this.txt_empID.CustomButton.Visible = false;
+            this.txt_empID.Lines = new string[0];
+            this.txt_empID.Location = new System.Drawing.Point(116, 20);
+            this.txt_empID.MaxLength = 32767;
+            this.txt_empID.Name = "txt_empID";
+            this.txt_empID.PasswordChar = '\0';
+            this.txt_empID.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txt_empID.SelectedText = "";
+            this.txt_empID.SelectionLength = 0;
+            this.txt_empID.SelectionStart = 0;
+            this.txt_empID.ShortcutsEnabled = true;
+            this.txt_empID.Size = new System.Drawing.Size(215, 23);
+            this.txt_empID.TabIndex = 5;
+            this.txt_empID.UseSelectable = true;
+            this.txt_empID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txt_empID.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_empID.TextChanged += new System.EventHandler(this.txt_empID_TextChanged);
+            this.txt_empID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_empID_KeyDown);
             // 
             // metroLabel7
             // 
@@ -175,6 +312,8 @@
             // 
             // btn_Clear
             // 
+            this.btn_Clear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Clear.BackgroundImage")));
+            this.btn_Clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Clear.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Clear.Location = new System.Drawing.Point(642, 236);
             this.btn_Clear.Name = "btn_Clear";
@@ -186,6 +325,8 @@
             // 
             // btn_Add
             // 
+            this.btn_Add.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Add.BackgroundImage")));
+            this.btn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Add.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_Add.Location = new System.Drawing.Point(642, 194);
             this.btn_Add.Name = "btn_Add";
@@ -225,6 +366,8 @@
             this.txt_quantity.UseSelectable = true;
             this.txt_quantity.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txt_quantity.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_quantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_quantity_KeyDown);
+            this.txt_quantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_quantity_KeyPress);
             // 
             // metroLabel8
             // 
@@ -254,6 +397,7 @@
             this.txt_foodNo.MaxLength = 32767;
             this.txt_foodNo.Name = "txt_foodNo";
             this.txt_foodNo.PasswordChar = '\0';
+            this.txt_foodNo.PromptText = "Select Food No >>";
             this.txt_foodNo.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txt_foodNo.SelectedText = "";
             this.txt_foodNo.SelectionLength = 0;
@@ -262,9 +406,11 @@
             this.txt_foodNo.Size = new System.Drawing.Size(282, 23);
             this.txt_foodNo.TabIndex = 13;
             this.txt_foodNo.UseSelectable = true;
+            this.txt_foodNo.WaterMark = "Select Food No >>";
             this.txt_foodNo.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txt_foodNo.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
             this.txt_foodNo.TextChanged += new System.EventHandler(this.txt_foodNo_TextChanged);
+            this.txt_foodNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_foodNo_KeyDown);
             // 
             // txt_Desig
             // 
@@ -386,46 +532,6 @@
             this.metroLabel3.TabIndex = 6;
             this.metroLabel3.Text = "Employee Name     :";
             // 
-            // txt_empID
-            // 
-            // 
-            // 
-            // 
-            this.txt_empID.CustomButton.Image = null;
-            this.txt_empID.CustomButton.Location = new System.Drawing.Point(193, 1);
-            this.txt_empID.CustomButton.Name = "";
-            this.txt_empID.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txt_empID.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txt_empID.CustomButton.TabIndex = 1;
-            this.txt_empID.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txt_empID.CustomButton.UseSelectable = true;
-            this.txt_empID.CustomButton.Visible = false;
-            this.txt_empID.Lines = new string[0];
-            this.txt_empID.Location = new System.Drawing.Point(224, 19);
-            this.txt_empID.MaxLength = 32767;
-            this.txt_empID.Name = "txt_empID";
-            this.txt_empID.PasswordChar = '\0';
-            this.txt_empID.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txt_empID.SelectedText = "";
-            this.txt_empID.SelectionLength = 0;
-            this.txt_empID.SelectionStart = 0;
-            this.txt_empID.ShortcutsEnabled = true;
-            this.txt_empID.Size = new System.Drawing.Size(215, 23);
-            this.txt_empID.TabIndex = 5;
-            this.txt_empID.UseSelectable = true;
-            this.txt_empID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txt_empID.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txt_empID.TextChanged += new System.EventHandler(this.txt_empID_TextChanged);
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(16, 16);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel2.TabIndex = 4;
-            this.metroLabel2.Text = "Employee ID";
-            // 
             // lbl_welcome
             // 
             this.lbl_welcome.AutoSize = true;
@@ -440,6 +546,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ordSearch);
             this.groupBox1.Controls.Add(this.txt_date);
             this.groupBox1.Controls.Add(this.metroLabel1);
             this.groupBox1.Controls.Add(this.txt_orderID);
@@ -449,6 +556,18 @@
             this.groupBox1.Size = new System.Drawing.Size(743, 84);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
+            // 
+            // ordSearch
+            // 
+            this.ordSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("ordSearch.BackgroundImage")));
+            this.ordSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ordSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ordSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ordSearch.Location = new System.Drawing.Point(298, 26);
+            this.ordSearch.Name = "ordSearch";
+            this.ordSearch.Size = new System.Drawing.Size(39, 23);
+            this.ordSearch.TabIndex = 21;
+            this.ordSearch.Click += new System.EventHandler(this.ordSearch_Click);
             // 
             // txt_date
             // 
@@ -519,6 +638,8 @@
             this.txt_orderID.UseSelectable = true;
             this.txt_orderID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txt_orderID.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_orderID.TextChanged += new System.EventHandler(this.txt_orderID_TextChanged);
+            this.txt_orderID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_orderID_KeyDown);
             // 
             // metroLabel6
             // 
@@ -529,32 +650,27 @@
             this.metroLabel6.TabIndex = 3;
             this.metroLabel6.Text = "Order ID";
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
-            // errorProvider2
-            // 
-            this.errorProvider2.ContainerControl = this;
-            // 
             // PreparedFoodOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1195, 457);
+            this.ClientSize = new System.Drawing.Size(1181, 457);
             this.Controls.Add(this.metroPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PreparedFoodOrder";
             this.Style = MetroFramework.MetroColorStyle.Black;
             this.Load += new System.EventHandler(this.PreparedFoodOrder_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grid_foodMasterInfo)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -587,9 +703,15 @@
         private System.Windows.Forms.DataGridView grid_foodMasterInfo;
         private MetroFramework.Controls.MetroButton btn_back;
         private MetroFramework.Controls.MetroTextBox txt_orderID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_index1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cl_index2;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.ErrorProvider errorProvider2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_index1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_Index3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cl_index2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private MetroFramework.Controls.MetroTextBox txt_contactNum;
+        private MetroFramework.Controls.MetroLabel metroLabel9;
+        private System.Windows.Forms.Panel ordSearch;
+        private System.Windows.Forms.Panel FoodSearch;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierRegister));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.FormValidator = new System.Windows.Forms.ErrorProvider(this.components);
             this.Error_empInfo = new System.Windows.Forms.ErrorProvider(this.components);
@@ -103,7 +104,7 @@
             // 
             // metroPanel1
             // 
-            this.metroPanel1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.blue_gradient_wallpaper_hd_20_color;
+            this.metroPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroPanel1.BackgroundImage")));
             this.metroPanel1.Controls.Add(this.btn_Search);
             this.metroPanel1.Controls.Add(this.btn_back);
             this.metroPanel1.Controls.Add(this.btn_update);
@@ -123,13 +124,14 @@
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            this.metroPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.metroPanel1_Paint);
             // 
             // btn_Search
             // 
-            this.btn_Search.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.search_icon1;
+            this.btn_Search.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Search.BackgroundImage")));
             this.btn_Search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_Search.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Search.Location = new System.Drawing.Point(340, 532);
+            this.btn_Search.Location = new System.Drawing.Point(337, 509);
             this.btn_Search.Name = "btn_Search";
             this.btn_Search.Size = new System.Drawing.Size(129, 32);
             this.btn_Search.TabIndex = 20;
@@ -139,10 +141,10 @@
             // 
             // btn_back
             // 
-            this.btn_back.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.close1;
+            this.btn_back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_back.BackgroundImage")));
             this.btn_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_back.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_back.Location = new System.Drawing.Point(503, 532);
+            this.btn_back.Location = new System.Drawing.Point(500, 509);
             this.btn_back.Name = "btn_back";
             this.btn_back.Size = new System.Drawing.Size(129, 32);
             this.btn_back.TabIndex = 19;
@@ -152,10 +154,10 @@
             // 
             // btn_update
             // 
-            this.btn_update.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources._1364243914_config1;
+            this.btn_update.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_update.BackgroundImage")));
             this.btn_update.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_update.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_update.Location = new System.Drawing.Point(173, 532);
+            this.btn_update.Location = new System.Drawing.Point(169, 509);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(129, 32);
             this.btn_update.TabIndex = 18;
@@ -165,10 +167,10 @@
             // 
             // btn_save
             // 
-            this.btn_save.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.save1;
+            this.btn_save.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_save.BackgroundImage")));
             this.btn_save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_save.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_save.Location = new System.Drawing.Point(11, 532);
+            this.btn_save.Location = new System.Drawing.Point(7, 509);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(129, 32);
             this.btn_save.TabIndex = 17;
@@ -186,7 +188,7 @@
             this.groupBox2.Controls.Add(this.metroLabel14);
             this.groupBox2.Controls.Add(this.dtp_regDate);
             this.groupBox2.Controls.Add(this.metroLabel13);
-            this.groupBox2.Location = new System.Drawing.Point(600, 67);
+            this.groupBox2.Location = new System.Drawing.Point(580, 67);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(488, 436);
             this.groupBox2.TabIndex = 16;
@@ -239,7 +241,7 @@
             this.txt_siteName.UseSelectable = true;
             this.txt_siteName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txt_siteName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txt_siteName.Click += new System.EventHandler(this.txt_siteName_Click);
+            this.txt_siteName.TextChanged += new System.EventHandler(this.txt_siteName_TextChanged);
             // 
             // txt_faxNum
             // 
@@ -257,7 +259,7 @@
             this.txt_faxNum.CustomButton.Visible = false;
             this.txt_faxNum.Lines = new string[0];
             this.txt_faxNum.Location = new System.Drawing.Point(179, 109);
-            this.txt_faxNum.MaxLength = 32767;
+            this.txt_faxNum.MaxLength = 10;
             this.txt_faxNum.Name = "txt_faxNum";
             this.txt_faxNum.PasswordChar = '\0';
             this.txt_faxNum.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -330,7 +332,7 @@
             this.groupBox1.Controls.Add(this.metroLabel3);
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Controls.Add(this.metroLabel1);
-            this.groupBox1.Location = new System.Drawing.Point(11, 67);
+            this.groupBox1.Location = new System.Drawing.Point(7, 67);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(567, 436);
             this.groupBox1.TabIndex = 15;
@@ -392,7 +394,7 @@
             this.txt_nic.CustomButton.Visible = false;
             this.txt_nic.Lines = new string[0];
             this.txt_nic.Location = new System.Drawing.Point(253, 345);
-            this.txt_nic.MaxLength = 32767;
+            this.txt_nic.MaxLength = 10;
             this.txt_nic.Name = "txt_nic";
             this.txt_nic.PasswordChar = '\0';
             this.txt_nic.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -432,7 +434,7 @@
             this.txt_contactNum.CustomButton.Visible = false;
             this.txt_contactNum.Lines = new string[0];
             this.txt_contactNum.Location = new System.Drawing.Point(253, 300);
-            this.txt_contactNum.MaxLength = 32767;
+            this.txt_contactNum.MaxLength = 10;
             this.txt_contactNum.Name = "txt_contactNum";
             this.txt_contactNum.PasswordChar = '\0';
             this.txt_contactNum.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -725,7 +727,7 @@
             // 
             // 
             this.txt_suppID.CustomButton.Image = null;
-            this.txt_suppID.CustomButton.Location = new System.Drawing.Point(250, 1);
+            this.txt_suppID.CustomButton.Location = new System.Drawing.Point(270, 1);
             this.txt_suppID.CustomButton.Name = "";
             this.txt_suppID.CustomButton.Size = new System.Drawing.Size(21, 21);
             this.txt_suppID.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
@@ -735,7 +737,7 @@
             this.txt_suppID.CustomButton.Visible = false;
             this.txt_suppID.Enabled = false;
             this.txt_suppID.Lines = new string[0];
-            this.txt_suppID.Location = new System.Drawing.Point(800, 34);
+            this.txt_suppID.Location = new System.Drawing.Point(780, 37);
             this.txt_suppID.MaxLength = 32767;
             this.txt_suppID.Name = "txt_suppID";
             this.txt_suppID.PasswordChar = '\0';
@@ -744,7 +746,7 @@
             this.txt_suppID.SelectionLength = 0;
             this.txt_suppID.SelectionStart = 0;
             this.txt_suppID.ShortcutsEnabled = true;
-            this.txt_suppID.Size = new System.Drawing.Size(272, 23);
+            this.txt_suppID.Size = new System.Drawing.Size(292, 23);
             this.txt_suppID.TabIndex = 4;
             this.txt_suppID.UseSelectable = true;
             this.txt_suppID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
@@ -765,7 +767,7 @@
             // metroLabel12
             // 
             this.metroLabel12.AutoSize = true;
-            this.metroLabel12.Location = new System.Drawing.Point(600, 34);
+            this.metroLabel12.Location = new System.Drawing.Point(580, 37);
             this.metroLabel12.Name = "metroLabel12";
             this.metroLabel12.Size = new System.Drawing.Size(138, 19);
             this.metroLabel12.TabIndex = 2;
@@ -775,8 +777,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1111, 613);
+            this.ClientSize = new System.Drawing.Size(1075, 574);
             this.Controls.Add(this.metroPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SupplierRegister";
             this.Style = MetroFramework.MetroColorStyle.Black;
             this.Text = "SupplierRegister";

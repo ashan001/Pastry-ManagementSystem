@@ -16,7 +16,8 @@ namespace Pastry_ManagementSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UI.UpdateEmployee());
+
+            Application.Run(new UI.Login());
         }
     }
 }

@@ -50,8 +50,6 @@ namespace Pastry_ManagementSystem.UI
                 metroProgressBar.Update();
             };
             await ProcessImport(list, progressReport);
-            new LoginForm().Show();
-            this.Hide();
         }
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RequiredItem));
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -47,13 +48,14 @@
             this.btn_clr = new MetroFramework.Controls.MetroButton();
             this.btn_ok = new MetroFramework.Controls.MetroButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.itemIDSearch = new System.Windows.Forms.Panel();
+            this.txt_itemField = new MetroFramework.Controls.MetroTextBox();
             this.dtp_dueDate = new System.Windows.Forms.DateTimePicker();
             this.metroLabel13 = new MetroFramework.Controls.MetroLabel();
             this.cmb_SuppCompanyName = new System.Windows.Forms.ComboBox();
             this.metroLabel12 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.btn_clear = new MetroFramework.Controls.MetroButton();
-            this.txt_itemId = new MetroFramework.Controls.MetroTextBox();
             this.btnAdd = new MetroFramework.Controls.MetroButton();
             this.metroLabel11 = new MetroFramework.Controls.MetroLabel();
             this.txt_quatity = new MetroFramework.Controls.MetroTextBox();
@@ -87,7 +89,7 @@
             // 
             // metroPanel1
             // 
-            this.metroPanel1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.blue_gradient_wallpaper_hd_20_color;
+            this.metroPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroPanel1.BackgroundImage")));
             this.metroPanel1.Controls.Add(this.panel1);
             this.metroPanel1.Controls.Add(this.lbl_welcome);
             this.metroPanel1.Controls.Add(this.groupBox4);
@@ -111,7 +113,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.b388675ca707b60dde64716438bb8565;
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Location = new System.Drawing.Point(682, 127);
             this.panel1.Name = "panel1";
@@ -316,18 +318,23 @@
             // 
             // btn_back
             // 
-            this.btn_back.Location = new System.Drawing.Point(991, 634);
+            this.btn_back.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_back.BackgroundImage")));
+            this.btn_back.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_back.Location = new System.Drawing.Point(957, 568);
             this.btn_back.Name = "btn_back";
-            this.btn_back.Size = new System.Drawing.Size(87, 32);
+            this.btn_back.Size = new System.Drawing.Size(116, 56);
             this.btn_back.TabIndex = 21;
             this.btn_back.Text = "Back";
             this.btn_back.UseSelectable = true;
+            this.btn_back.Click += new System.EventHandler(this.btn_back_Click);
             // 
             // btn_clr
             // 
-            this.btn_clr.Location = new System.Drawing.Point(898, 634);
+            this.btn_clr.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_clr.BackgroundImage")));
+            this.btn_clr.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_clr.Location = new System.Drawing.Point(783, 568);
             this.btn_clr.Name = "btn_clr";
-            this.btn_clr.Size = new System.Drawing.Size(87, 32);
+            this.btn_clr.Size = new System.Drawing.Size(120, 56);
             this.btn_clr.TabIndex = 20;
             this.btn_clr.Text = "Clear";
             this.btn_clr.UseSelectable = true;
@@ -335,9 +342,11 @@
             // 
             // btn_ok
             // 
-            this.btn_ok.Location = new System.Drawing.Point(805, 634);
+            this.btn_ok.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_ok.BackgroundImage")));
+            this.btn_ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_ok.Location = new System.Drawing.Point(619, 568);
             this.btn_ok.Name = "btn_ok";
-            this.btn_ok.Size = new System.Drawing.Size(87, 32);
+            this.btn_ok.Size = new System.Drawing.Size(117, 56);
             this.btn_ok.TabIndex = 19;
             this.btn_ok.Text = "OK";
             this.btn_ok.UseSelectable = true;
@@ -345,21 +354,66 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.itemIDSearch);
+            this.groupBox2.Controls.Add(this.txt_itemField);
             this.groupBox2.Controls.Add(this.dtp_dueDate);
             this.groupBox2.Controls.Add(this.metroLabel13);
             this.groupBox2.Controls.Add(this.cmb_SuppCompanyName);
             this.groupBox2.Controls.Add(this.metroLabel12);
             this.groupBox2.Controls.Add(this.metroLabel10);
             this.groupBox2.Controls.Add(this.btn_clear);
-            this.groupBox2.Controls.Add(this.txt_itemId);
             this.groupBox2.Controls.Add(this.btnAdd);
             this.groupBox2.Controls.Add(this.metroLabel11);
             this.groupBox2.Controls.Add(this.txt_quatity);
-            this.groupBox2.Location = new System.Drawing.Point(23, 384);
+            this.groupBox2.Location = new System.Drawing.Point(23, 386);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(1050, 111);
             this.groupBox2.TabIndex = 18;
             this.groupBox2.TabStop = false;
+            // 
+            // itemIDSearch
+            // 
+            this.itemIDSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("itemIDSearch.BackgroundImage")));
+            this.itemIDSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.itemIDSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.itemIDSearch.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.itemIDSearch.Location = new System.Drawing.Point(570, 26);
+            this.itemIDSearch.Name = "itemIDSearch";
+            this.itemIDSearch.Size = new System.Drawing.Size(33, 23);
+            this.itemIDSearch.TabIndex = 49;
+            this.itemIDSearch.Click += new System.EventHandler(this.itemIDSearch_Click);
+            // 
+            // txt_itemField
+            // 
+            // 
+            // 
+            // 
+            this.txt_itemField.CustomButton.Image = null;
+            this.txt_itemField.CustomButton.Location = new System.Drawing.Point(161, 1);
+            this.txt_itemField.CustomButton.Name = "";
+            this.txt_itemField.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txt_itemField.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txt_itemField.CustomButton.TabIndex = 1;
+            this.txt_itemField.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txt_itemField.CustomButton.UseSelectable = true;
+            this.txt_itemField.CustomButton.Visible = false;
+            this.txt_itemField.Lines = new string[0];
+            this.txt_itemField.Location = new System.Drawing.Point(420, 26);
+            this.txt_itemField.MaxLength = 32767;
+            this.txt_itemField.Name = "txt_itemField";
+            this.txt_itemField.PasswordChar = '\0';
+            this.txt_itemField.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txt_itemField.SelectedText = "";
+            this.txt_itemField.SelectionLength = 0;
+            this.txt_itemField.SelectionStart = 0;
+            this.txt_itemField.ShortcutsEnabled = true;
+            this.txt_itemField.Size = new System.Drawing.Size(183, 23);
+            this.txt_itemField.TabIndex = 22;
+            this.txt_itemField.UseSelectable = true;
+            this.txt_itemField.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txt_itemField.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_itemField.TextChanged += new System.EventHandler(this.txt_itemField_TextChanged);
+            this.txt_itemField.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_itemField_KeyDown);
             // 
             // dtp_dueDate
             // 
@@ -407,6 +461,8 @@
             // 
             // btn_clear
             // 
+            this.btn_clear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_clear.BackgroundImage")));
+            this.btn_clear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_clear.Location = new System.Drawing.Point(959, 67);
             this.btn_clear.Name = "btn_clear";
             this.btn_clear.Size = new System.Drawing.Size(87, 32);
@@ -415,39 +471,10 @@
             this.btn_clear.UseSelectable = true;
             this.btn_clear.Click += new System.EventHandler(this.btn_clear_Click);
             // 
-            // txt_itemId
-            // 
-            // 
-            // 
-            // 
-            this.txt_itemId.CustomButton.Image = null;
-            this.txt_itemId.CustomButton.Location = new System.Drawing.Point(156, 1);
-            this.txt_itemId.CustomButton.Name = "";
-            this.txt_itemId.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txt_itemId.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txt_itemId.CustomButton.TabIndex = 1;
-            this.txt_itemId.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txt_itemId.CustomButton.UseSelectable = true;
-            this.txt_itemId.CustomButton.Visible = false;
-            this.txt_itemId.Lines = new string[0];
-            this.txt_itemId.Location = new System.Drawing.Point(420, 26);
-            this.txt_itemId.MaxLength = 32767;
-            this.txt_itemId.Name = "txt_itemId";
-            this.txt_itemId.PasswordChar = '\0';
-            this.txt_itemId.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txt_itemId.SelectedText = "";
-            this.txt_itemId.SelectionLength = 0;
-            this.txt_itemId.SelectionStart = 0;
-            this.txt_itemId.ShortcutsEnabled = true;
-            this.txt_itemId.Size = new System.Drawing.Size(178, 23);
-            this.txt_itemId.TabIndex = 12;
-            this.txt_itemId.UseSelectable = true;
-            this.txt_itemId.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txt_itemId.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txt_itemId.TextChanged += new System.EventHandler(this.txt_itemId_TextChanged);
-            // 
             // btnAdd
             // 
+            this.btnAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.BackgroundImage")));
+            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnAdd.Enabled = false;
             this.btnAdd.Location = new System.Drawing.Point(856, 66);
             this.btnAdd.Name = "btnAdd";
@@ -728,6 +755,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1088, 708);
             this.Controls.Add(this.metroPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RequiredItem";
             this.Style = MetroFramework.MetroColorStyle.Black;
             this.Load += new System.EventHandler(this.RequiredItem_Load);
@@ -768,7 +796,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroTextBox txt_empId;
         private MetroFramework.Controls.MetroLabel metroLabel4;
-        private MetroFramework.Controls.MetroTextBox txt_itemId;
         private MetroFramework.Controls.MetroLabel metroLabel10;
         private MetroFramework.Controls.MetroLabel metroLabel11;
         private System.Windows.Forms.GroupBox groupBox2;
@@ -792,5 +819,7 @@
         private System.Windows.Forms.DateTimePicker dtp_dueDate;
         private MetroFramework.Controls.MetroLabel metroLabel13;
         private MetroFramework.Controls.MetroTextBox txt_quatity;
+        private MetroFramework.Controls.MetroTextBox txt_itemField;
+        private System.Windows.Forms.Panel itemIDSearch;
     }
 }

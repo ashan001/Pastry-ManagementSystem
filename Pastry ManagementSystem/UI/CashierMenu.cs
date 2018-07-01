@@ -24,14 +24,36 @@ namespace Pastry_ManagementSystem.UI
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            new CustomerRegister().Show();
-            this.Hide();
+            new CustomerRegister().ShowDialog();
+         
         }
 
         private void metroTile2_Click(object sender, EventArgs e)
         {
             new CustomerOrder().Show();
             this.Hide();
+        }
+
+        private void metroTile5_Click(object sender, EventArgs e)
+        {
+            new MultipleCustomerOrders().Show();
+            Hide();
+        }
+
+        private void metroTile6_Click(object sender, EventArgs e)
+        {
+            new UpdateCustomerScreen().ShowDialog();
+          
+        }
+
+        private void metroTile3_Click(object sender, EventArgs e)
+        {
+            new BillProcessScreen().Show();Hide(); 
+        }
+
+        private void metroTile13_Click(object sender, EventArgs e)
+        {
+            new UI.CpuMonitor().Show();Hide();
         }
     }
 }

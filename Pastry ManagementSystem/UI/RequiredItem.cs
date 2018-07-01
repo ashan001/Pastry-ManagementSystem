@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Pastry_ManagementSystem.UI.HelpScreens;
 
 namespace Pastry_ManagementSystem.UI
 {
@@ -18,6 +19,7 @@ namespace Pastry_ManagementSystem.UI
         protected string v_sys_time { get; set; }
         protected string empID { get; set; }
         public string itemID { get; set; }
+        public string v_db_itemFieldValue { get; set; }
         Database db = new Database();
         public RequiredItem()
         {
@@ -36,11 +38,11 @@ namespace Pastry_ManagementSystem.UI
             {
                 string sql = null;
                 SqlDataReader reader;
-                sql = "SELECT * FROM Item_Table WHERE item_id not in (SELECT TOP (SELECT COUNT(1)-1 FROM Item_Table) item_id FROM Item_Table);";
+                sql = "SELECT * FROM Item_File WHERE ItemID not in (SELECT TOP (SELECT COUNT(1)-1 FROM Item_File) ItemID FROM Item_File);";
                 reader = db.getData(sql);
                 while (reader.Read())
                 {
-                    txt_itemNo.Text = reader["item_id"].ToString();
+                    txt_itemNo.Text = reader["ItemID"].ToString();
                 }
                 db.closeCon();
                 reader = null;
@@ -118,7 +120,7 @@ namespace Pastry_ManagementSystem.UI
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int n = grid_itemInfo.Rows.Add();
-            grid_itemInfo.Rows[n].Cells[0].Value = txt_itemId.Text;
+            grid_itemInfo.Rows[n].Cells[0].Value = txt_itemField.Text;
             grid_itemInfo.Rows[n].Cells[1].Value = txt_quatity.Text;
             grid_itemInfo.Rows[n].Cells[2].Value = cmb_SuppCompanyName.Text;
             grid_itemInfo.Rows[n].Cells[3].Value = txt_empId.Text;
@@ -136,14 +138,14 @@ namespace Pastry_ManagementSystem.UI
                     n = db.update_del_insert_Data(sql1);
                     db.closeCon();
                     string sql2 = null;
-                    sql2 = "Insert into purchase_order_header_file Values('" + grid_itemInfo.Rows[i].Cells["cl_index3"].Value + "','" + grid_itemInfo.Rows[i].Cells["cl_index4"].Value + "','" + txt_date.Text + "','" + dtp_dueDate.Value.ToString() + "')";
+                    sql2 = "Insert into purchase_order_header_file Values('" + grid_itemInfo.Rows[i].Cells["cl_index3"].Value + "','" + grid_itemInfo.Rows[i].Cells["cl_index4"].Value + "','" + txt_date.Text.ToString().Substring(0,9) + "','" + dtp_dueDate.Value.ToString().Substring(0,9) + "')";
                     x = db.update_del_insert_Data(sql2);
                     db.closeCon();
                 }
                 value = x + n;
                 if (value > 0)
                 {
-                    MessageBox.Show("Your Data saved successfully");
+                    MessageBox.Show("Your Data saved successfully", "Infomation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.btn_ok.Enabled = false;
                 }
                 else
@@ -184,6 +186,68 @@ namespace Pastry_ManagementSystem.UI
             this.txt_designation.Clear();
             this.txt_nic.Clear();
             this.btnAdd.Enabled = false;
+            this.txt_quatity.Clear();
+            this.txt_itemField.Clear();
+
+        }
+
+        private void btn_back_Click(object sender, EventArgs e)
+        {
+            new SystemAdminMenu().Show();
+            this.Hide();
+        }
+
+        private void txt_itemField_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                itemIDSearch_Click(sender,e);
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                txt_quatity.Focus();
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void itemIDSearch_Click(object sender, EventArgs e)
+        {
+            ItemHelpScreen obj = new ItemHelpScreen();
+            obj.ShowDialog();
+            txt_itemField.Text = obj.itemID;
+            txt_itemField.Focus();
+        }
+
+        private void txt_itemField_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                string sql;
+                SqlDataReader reader;
+                sql = "Select * From Item_File where ItemID='" + txt_itemField .Text+ "'";
+                reader = db.getData(sql);
+                while (reader.Read())
+                {
+                    v_db_itemFieldValue=(reader["ItemID"].ToString());
+                   
+                }         
+               
+                db.closeCon();
+                if (v_db_itemFieldValue == txt_itemField.Text)
+                {
+                    txt_quatity.Enabled = true;
+                    errorProvider1.Clear();
+                }
+                else
+                {
+                    txt_quatity.Enabled = false;
+                    errorProvider1.SetError(txt_itemField, "Please check the item number and try again");
+                }
+            }
+            catch (Exception)
+            {
+
+            }
         }
 
         private void dtp_dueDate_ValueChanged(object sender, EventArgs e)
@@ -197,39 +261,5 @@ namespace Pastry_ManagementSystem.UI
                 btnAdd.Enabled = true;
             }
         }
-        string v_db_itemID, sql = null;
-        private void txt_itemId_TextChanged(object sender, EventArgs e)
-        {
-            
-            SqlDataReader reader = null;
-            try
-            {
-                sql = "Select item_id From Item_Table where item_id='"+ txt_itemId .Text+ "'";
-                reader = db.getData(sql);
-                while (reader.Read())
-                {
-                    v_db_itemID = reader["item_id"].ToString();
-                }
-                db.closeCon();
-                if (txt_itemNo.Text == v_db_itemID)
-                {
-                    txt_quatity.Enabled = true;
-                    errorProvider1.Clear();
-                }
-                else
-                {
-                    errorProvider1.SetError(txt_itemNo,"Please check the item no again");
-                    txt_quatity.Enabled = false;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-        }
-
-
-
-
     }
 }

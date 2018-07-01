@@ -1,8 +1,11 @@
-﻿using Pastry_ManagementSystem.DB;
+﻿using Dapper;
+using Pastry_ManagementSystem.DB;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -28,8 +31,7 @@ namespace Pastry_ManagementSystem.UI
         }
         private void SupplierRegister_Load(object sender, EventArgs e)
         {
-            Control.CheckForIllegalCrossThreadCalls = false;
-       
+            Control.CheckForIllegalCrossThreadCalls = false;  
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -52,6 +54,10 @@ namespace Pastry_ManagementSystem.UI
 
                 }
             }
+           
+                Thread th = new Thread(new ThreadStart(genarateSupplierID));
+                th.Start();
+           
         }
         private void txt_lastName_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -362,6 +368,23 @@ namespace Pastry_ManagementSystem.UI
                 if (line == 1)
                 {
                     MessageBox.Show("Supplier successfully saved", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txt_firstName.Clear();
+                    txt_lastName.Clear();
+                    txt_companyName.Clear();
+                    txt_line1.Clear();
+                    txt_line2.Clear();
+                    txt_city.Clear();
+                    txt_contactNum.Clear();
+                    txt_nic.Clear();
+                    txt_email.Clear();
+                    txt_faxNum.Clear();
+                    txt_siteName.Clear();
+                    rtxt_comments.Clear();
+                    txt_suppID.Clear();
+                    FormValidator.Clear();
+                    FormValidator2.Clear();
+                    formValidator3.Clear();
+                    Error_empInfo.Clear();
                 }
                 else
                 {
@@ -375,8 +398,7 @@ namespace Pastry_ManagementSystem.UI
         }
         private void txt_siteName_Click(object sender, EventArgs e)
         {
-            Thread th = new Thread(new ThreadStart(genarateSupplierID));
-            th.Start();
+           
         }
        
         private void genarateSupplierID()
@@ -385,12 +407,18 @@ namespace Pastry_ManagementSystem.UI
             int lineNum = 0;
             try
             {
-                sql = "Select Count (supp_ID) From supplier_table";
-                lineNum = db.returnDBRows(sql);
-                db.closeCon();
-                lineNum++;
-                supplier_Id = ((uniqueNameForSuppID) + (year.Substring(2)) + lineNum);
-                txt_suppID.Text = supplier_Id.ToString();
+                using (IDbConnection db=new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
+                {
+                    if (db.State == ConnectionState.Closed)
+                    {
+                        db.Open();
+                        sql = "Select Count (*) From supplier_table";
+                        lineNum = db.ExecuteScalar<int>(sql);
+                        lineNum++;
+                        supplier_Id = ((uniqueNameForSuppID) + (year.Substring(2)) + lineNum);
+                        txt_suppID.Text = supplier_Id.ToString();
+                    }
+                }
             }
             catch (NullReferenceException)
             {
@@ -434,5 +462,21 @@ namespace Pastry_ManagementSystem.UI
             new SearchSupplierMessageBox().Show(this);
           
         }
+
+        private void metroPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txt_siteName_TextChanged(object sender, EventArgs e)
+        {
+          
+        }
+      
+        private void txt_siteName_KeyDown(object sender, KeyEventArgs e)
+        {
+           
+        }
+       
     }
 }

@@ -32,7 +32,25 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Pastry_ManagementSystem.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Custom-Icon-Design-Flatastic-11-Shop.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Dapper, Version=1.50.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.1\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
       <Private>True</Private>
@@ -48,7 +66,11 @@
     <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,26 +83,195 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DB\Database.cs" />
+    <Compile Include="ExtraClassesToMapData\EmployeeClass.cs" />
+    <Compile Include="ExtraClassesToMapData\InvetoryInfo.cs" />
+    <Compile Include="ExtraClassesToMapData\ItemInfo.cs" />
+    <Compile Include="ExtraClassesToMapData\ItemObjects.cs" />
+    <Compile Include="ExtraClassesToMapData\MapDataAndHideForRawMatExp.cs" />
+    <Compile Include="ExtraClassesToMapData\MapItemData.cs" />
+    <Compile Include="ExtraClassesToMapData\MapLoginData.cs" />
+    <Compile Include="ExtraClassesToMapData\ObjectsOfIssueForm.cs" />
+    <Compile Include="ExtraClassesToMapData\PurchaseDetails.cs" />
+    <Compile Include="ExtraClassesToMapData\SupplierClass.cs" />
+    <Compile Include="ExtraClassesToMapData\WarehouseInfo.cs" />
+    <Compile Include="Other\BackpanelObj.cs" />
+    <Compile Include="Other\BillingInfo.cs" />
+    <Compile Include="Other\DailyIncomeClass.cs" />
+    <Compile Include="Other\FoodData.cs" />
+    <Compile Include="Other\ItemClass.cs" />
+    <Compile Include="Other\ListFoodData.cs" />
+    <Compile Include="Other\OrderDetail.cs" />
+    <Compile Include="Other\Orders.cs" />
+    <Compile Include="Other\ProductData.cs" />
     <Compile Include="Other\ProgressReport.cs" />
+    <Compile Include="PrintReportUI\BillingUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\BillingUI.Designer.cs">
+      <DependentUpon>BillingUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyFoodOrdRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyFoodOrdRep.Designer.cs">
+      <DependentUpon>PrintDailyFoodOrdRep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyIncomeRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyIncomeRep.Designer.cs">
+      <DependentUpon>PrintDailyIncomeRep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyItemRep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyItemRep.Designer.cs">
+      <DependentUpon>PrintDailyItemRep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyProdIncome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\PrintDailyProdIncome.Designer.cs">
+      <DependentUpon>PrintDailyProdIncome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintReportUI\PurchaseRawMat_UI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\PurchaseRawMat_UI.Designer.cs">
+      <DependentUpon>PurchaseRawMat_UI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintReportUI\RawMaterial_ExpRepGen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\RawMaterial_ExpRepGen.Designer.cs">
+      <DependentUpon>RawMaterial_ExpRepGen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintReportUI\ReportPreviewUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintReportUI\ReportPreviewUI.Designer.cs">
+      <DependentUpon>ReportPreviewUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Bill.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bill.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DailyIncomeReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DailyIncomeReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DailyFoodOrderRep.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DailyFoodOrderRep.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DailyItemReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DailyItemReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\DailyProdIncomRep.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DailyProdIncomRep.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OrderReceipt.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderReceipt.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PurchaseRawMatReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseRawMatReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RawMatExpRep.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RawMatExpRep.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AvailableRawMaterialScreen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\AvailableRawMaterialScreen.Designer.cs">
       <DependentUpon>AvailableRawMaterialScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\BillScreen.cs">
+    <Compile Include="UI\CpuMonitor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\BillScreen.Designer.cs">
-      <DependentUpon>BillScreen.cs</DependentUpon>
+    <Compile Include="UI\CpuMonitor.Designer.cs">
+      <DependentUpon>CpuMonitor.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Changepassword.cs">
+    <Compile Include="UI\frmMain\frmSplashScrn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Changepassword.Designer.cs">
-      <DependentUpon>Changepassword.cs</DependentUpon>
+    <Compile Include="UI\frmMain\frmSplashScrn.Designer.cs">
+      <DependentUpon>frmSplashScrn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpScreens\FoodHelpScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpScreens\FoodHelpScreen.Designer.cs">
+      <DependentUpon>FoodHelpScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpScreens\FoodOrderHeaderDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpScreens\FoodOrderHeaderDetails.Designer.cs">
+      <DependentUpon>FoodOrderHeaderDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpScreens\InvHelpScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpScreens\InvHelpScreen.Designer.cs">
+      <DependentUpon>InvHelpScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpScreens\ItemHelpScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpScreens\ItemHelpScreen.Designer.cs">
+      <DependentUpon>ItemHelpScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpScreens\OrderHelpScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpScreens\OrderHelpScreen.Designer.cs">
+      <DependentUpon>OrderHelpScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpScreens\PurchaseHelpScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpScreens\PurchaseHelpScreen.Designer.cs">
+      <DependentUpon>PurchaseHelpScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HelpScreens\SupplierNameHelpScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HelpScreens\SupplierNameHelpScreen.Designer.cs">
+      <DependentUpon>SupplierNameHelpScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BillProcessScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BillProcessScreen.Designer.cs">
+      <DependentUpon>BillProcessScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CashierMenu.cs">
       <SubType>Form</SubType>
@@ -112,17 +303,29 @@
     <Compile Include="UI\EmployeeRegister.Designer.cs">
       <DependentUpon>EmployeeRegister.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\LoginForm.cs">
+    <Compile Include="UI\HelpScreens\WarehouseHelpScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <Compile Include="UI\HelpScreens\WarehouseHelpScreen.Designer.cs">
+      <DependentUpon>WarehouseHelpScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\ManagePayrol.cs">
+    <Compile Include="UI\IssueForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\ManagePayrol.Designer.cs">
-      <DependentUpon>ManagePayrol.cs</DependentUpon>
+    <Compile Include="UI\IssueForm.Designer.cs">
+      <DependentUpon>IssueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ItemDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ItemDetails.Designer.cs">
+      <DependentUpon>ItemDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ManagerMenu.cs">
       <SubType>Form</SubType>
@@ -130,11 +333,77 @@
     <Compile Include="UI\ManagerMenu.Designer.cs">
       <DependentUpon>ManagerMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\Menu.cs">
+    <Compile Include="UI\ItemScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <Compile Include="UI\ItemScreen.Designer.cs">
+      <DependentUpon>ItemScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\MultipleCustomerOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MultipleCustomerOrders.Designer.cs">
+      <DependentUpon>MultipleCustomerOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PurchaseOrderProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PurchaseOrderProcess.designer.cs">
+      <DependentUpon>PurchaseOrderProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\purchase_order_screen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\purchase_order_screen.designer.cs">
+      <DependentUpon>purchase_order_screen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RawMaterialProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RawMaterialProcess.Designer.cs">
+      <DependentUpon>RawMaterialProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReceivedRawMaterialSscreen_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReceivedRawMaterialSscreen_Info.Designer.cs">
+      <DependentUpon>ReceivedRawMaterialSscreen_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportUI\PrintDailyProductIncome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportUI\PrintDailyProductIncome.Designer.cs">
+      <DependentUpon>PrintDailyProductIncome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportUI\PrintOrderReciept.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportUI\PrintOrderReciept.Designer.cs">
+      <DependentUpon>PrintOrderReciept.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportUI\RawMaterialExpence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportUI\RawMaterialExpence.Designer.cs">
+      <DependentUpon>RawMaterialExpence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\RoutingToAdminBackPanel\RoutToBackPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RoutingToAdminBackPanel\RoutToBackPanel.Designer.cs">
+      <DependentUpon>RoutToBackPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateItemForm.Designer.cs">
+      <DependentUpon>UpdateItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\UpdateCustomerScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UpdateCustomerScreen.Designer.cs">
+      <DependentUpon>UpdateCustomerScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\PreparedFoodOrder.cs">
       <SubType>Form</SubType>
@@ -147,6 +416,30 @@
     </Compile>
     <Compile Include="UI\ProgressBar.Designer.cs">
       <DependentUpon>ProgressBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportUI\DailyFoodOrderReportScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportUI\DailyFoodOrderReportScreen.Designer.cs">
+      <DependentUpon>DailyFoodOrderReportScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportUI\DailyIncomeReportScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportUI\DailyIncomeReportScreen.Designer.cs">
+      <DependentUpon>DailyIncomeReportScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportUI\DailyItemReportScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportUI\DailyItemReportScreen.Designer.cs">
+      <DependentUpon>DailyItemReportScreen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportUI\PurchasedRawMaterialReportScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportUI\PurchasedRawMaterialReportScreen.Designer.cs">
+      <DependentUpon>PurchasedRawMaterialReportScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\RequiredItem.cs">
       <SubType>Form</SubType>
@@ -190,24 +483,98 @@
     <Compile Include="UI\UpdateSupplier.Designer.cs">
       <DependentUpon>UpdateSupplier.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="PrintReportUI\BillingUI.resx">
+      <DependentUpon>BillingUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintReportUI\PrintDailyFoodOrdRep.resx">
+      <DependentUpon>PrintDailyFoodOrdRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintReportUI\PrintDailyIncomeRep.resx">
+      <DependentUpon>PrintDailyIncomeRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintReportUI\PrintDailyItemRep.resx">
+      <DependentUpon>PrintDailyItemRep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintReportUI\PrintDailyProdIncome.resx">
+      <DependentUpon>PrintDailyProdIncome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintReportUI\PurchaseRawMat_UI.resx">
+      <DependentUpon>PurchaseRawMat_UI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintReportUI\RawMaterial_ExpRepGen.resx">
+      <DependentUpon>RawMaterial_ExpRepGen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintReportUI\ReportPreviewUI.resx">
+      <DependentUpon>ReportPreviewUI.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="Reports\Bill.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Bill.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DailyIncomeReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DailyIncomeReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DailyFoodOrderRep.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DailyFoodOrderRep.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DailyItemReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DailyItemReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DailyProdIncomRep.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>DailyProdIncomRep.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OrderReceipt.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>OrderReceipt.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PurchaseRawMatReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseRawMatReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RawMatExpRep.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RawMatExpRep.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\AvailableRawMaterialScreen.resx">
       <DependentUpon>AvailableRawMaterialScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\BillScreen.resx">
-      <DependentUpon>BillScreen.cs</DependentUpon>
+    <EmbeddedResource Include="UI\CpuMonitor.resx">
+      <DependentUpon>CpuMonitor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\Changepassword.resx">
-      <DependentUpon>Changepassword.cs</DependentUpon>
+    <EmbeddedResource Include="UI\frmMain\frmSplashScrn.resx">
+      <DependentUpon>frmSplashScrn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpScreens\FoodHelpScreen.resx">
+      <DependentUpon>FoodHelpScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpScreens\FoodOrderHeaderDetails.resx">
+      <DependentUpon>FoodOrderHeaderDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpScreens\InvHelpScreen.resx">
+      <DependentUpon>InvHelpScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpScreens\ItemHelpScreen.resx">
+      <DependentUpon>ItemHelpScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpScreens\OrderHelpScreen.resx">
+      <DependentUpon>OrderHelpScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpScreens\PurchaseHelpScreen.resx">
+      <DependentUpon>PurchaseHelpScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HelpScreens\SupplierNameHelpScreen.resx">
+      <DependentUpon>SupplierNameHelpScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\BillProcessScreen.resx">
+      <DependentUpon>BillProcessScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CashierMenu.resx">
       <DependentUpon>CashierMenu.cs</DependentUpon>
@@ -224,14 +591,68 @@
     <EmbeddedResource Include="UI\EmployeeRegister.resx">
       <DependentUpon>EmployeeRegister.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\LoginForm.resx">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\HelpScreens\WarehouseHelpScreen.resx">
+      <DependentUpon>WarehouseHelpScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\ManagePayrol.resx">
-      <DependentUpon>ManagePayrol.cs</DependentUpon>
+    <EmbeddedResource Include="UI\IssueForm.resx">
+      <DependentUpon>IssueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ItemDetails.resx">
+      <DependentUpon>ItemDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ManagerMenu.resx">
       <DependentUpon>ManagerMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ItemScreen.resx">
+      <DependentUpon>ItemScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\MultipleCustomerOrders.resx">
+      <DependentUpon>MultipleCustomerOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PurchaseOrderProcess.resx">
+      <DependentUpon>PurchaseOrderProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\purchase_order_screen.resx">
+      <DependentUpon>purchase_order_screen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RawMaterialProcess.resx">
+      <DependentUpon>RawMaterialProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReceivedRawMaterialSscreen_Info.resx">
+      <DependentUpon>ReceivedRawMaterialSscreen_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportUI\DailyFoodOrderReportScreen.resx">
+      <DependentUpon>DailyFoodOrderReportScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportUI\DailyIncomeReportScreen.resx">
+      <DependentUpon>DailyIncomeReportScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportUI\DailyItemReportScreen.resx">
+      <DependentUpon>DailyItemReportScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportUI\PrintDailyProductIncome.resx">
+      <DependentUpon>PrintDailyProductIncome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportUI\PrintOrderReciept.resx">
+      <DependentUpon>PrintOrderReciept.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportUI\PurchasedRawMaterialReportScreen.resx">
+      <DependentUpon>PurchasedRawMaterialReportScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportUI\RawMaterialExpence.resx">
+      <DependentUpon>RawMaterialExpence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RoutingToAdminBackPanel\RoutToBackPanel.resx">
+      <DependentUpon>RoutToBackPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateItemForm.resx">
+      <DependentUpon>UpdateItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UpdateCustomerScreen.resx">
+      <DependentUpon>UpdateCustomerScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PreparedFoodOrder.resx">
       <DependentUpon>PreparedFoodOrder.cs</DependentUpon>
@@ -261,6 +682,89 @@
       <DependentUpon>UpdateSupplier.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.DB.Database.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.ExtraClassesToMapData.InvetoryInfo.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.ExtraClassesToMapData.ItemInfo.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.ExtraClassesToMapData.MapDataAndHideForRawMatExp.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.ExtraClassesToMapData.PurchaseDetails.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.ExtraClassesToMapData.WarehouseInfo.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Other.DailyIncomeClass.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Other.FoodData.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Other.ItemClass.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Other.Orders.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Other.ProductData.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.PrintReportUI.BillingUI.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.PrintReportUI.PrintDailyFoodOrdRep.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.PrintReportUI.PrintDailyItemRep.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.PrintReportUI.PrintDailyProdIncome.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.PrintReportUI.ReportPreviewUI.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Properties.Settings.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.Bill.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.CachedBill.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.CachedDailyFoodOrderRep.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.CachedDailyItemReport.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.CachedDailyProdIncomRep.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.CachedOrderReceipt.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.DailyFoodOrderRep.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.DailyItemReport.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.DailyProdIncomRep.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.Reports.OrderReceipt.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.AvailableRawMaterialScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.BillProcessScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.CalculateReceiveNum.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.CashierMenu.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.Changepassword.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.CreateCusID.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.CreateOrdID.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.CustomerOrder.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.CustomerRegister.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.EmployeeDetails.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.EmployeeRegister.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.GenerateBillNo.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.GenerateItemNo.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.GenerateOrderID.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.GenerateReferenceNo.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.GetReceiptNo.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.HelpScreens.FoodHelpScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.HelpScreens.ItemHelpScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.HelpScreens.OrderHelpScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.HelpScreens.PurchaseHelpScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.HelpScreens.SupplierNameHelpScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ItemScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ItemSearchMessageBox.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.LoginScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ManagerMenu.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.Menu.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.MultipleCustomerOrders.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.NewUI.ItemDetails.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.NewUI.ManagePayrol.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.NewUI.RawMeterialExpenseScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.NewUI.ReceiptScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.NewUI.ReceivedRawMaterialSscreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.PreparedFoodOrder.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ProgressBar.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.PurchaseOrderProcess.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.purchase_order_screen+CalculateReceiveNum.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.purchase_order_screen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.RawMaterialProcess.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ReceivedRawMaterialSscreen_Info.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ReportUI.DailyFoodOrderReportScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ReportUI.DailyIncomeReportScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ReportUI.DailyItemReportScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ReportUI.PrintDailyProductIncome.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ReportUI.PrintOrderReciept.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.ReportUI.PurchasedRawMaterialReportScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.RequiredItem.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.SearchSupplierMessageBox.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.SupplierDetails.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.SupplierRegister.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.SystemAdminMenu.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.UpdateCustomerScreen.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.UpdateEmployee.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.UpdateItemForm.datasource" />
+    <None Include="Properties\DataSources\Pastry_ManagementSystem.UI.UpdateSupplier.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -272,80 +776,128 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Contents\" />
+    <Folder Include="DataSources\" />
+    <Folder Include="Icons\ExIcons\" />
     <Folder Include="ServerSideImageFolder\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\asdfds.jpg" />
+    <Content Include="Custom-Icon-Design-Flatastic-11-Shop.ico" />
+    <Content Include="Icons\1363007261_logout.png" />
+    <Content Include="Icons\1364243914_config.png" />
+    <Content Include="Icons\1364243918_graphic-design.png" />
+    <Content Include="Icons\1364243920_folder.png" />
+    <Content Include="Icons\1364243923_contact.png" />
+    <Content Include="Icons\1364243924_customers.png" />
+    <Content Include="Icons\1364243936_my-account.png" />
+    <Content Include="Icons\1364243940_check.png" />
+    <Content Include="Icons\1364243944_suppliers.png" />
+    <Content Include="Icons\1364243945_user.png" />
+    <Content Include="Icons\1364243947_sign-in.png" />
+    <Content Include="Icons\1364243953_logout.png" />
+    <Content Include="Icons\1364243956_refresh.png" />
+    <Content Include="Icons\1364243960_lightbulb.png" />
+    <Content Include="Icons\1364243971_sign-out.png" />
+    <Content Include="Icons\1364243984_settings.png" />
+    <Content Include="Icons\1384110565_Synchronize.png" />
+    <Content Include="Icons\1488535914_search.png" />
+    <Content Include="Icons\1488536185_folder-saved-search.png" />
+    <Content Include="Icons\1488536211_document-open.png" />
+    <Content Include="Icons\1488536218_go-next.png" />
+    <Content Include="Icons\1488538454_icontexto-aurora-folders-searches.png" />
+    <Content Include="Icons\1488538476_icontexto-aurora-folders-pictures.png" />
+    <Content Include="Icons\Actions-list-add-user-icon.png" />
+    <Content Include="Icons\Actions-mail-mark-task-icon %281%29.png" />
+    <Content Include="Icons\Actions-mail-mark-task-icon.png" />
+    <Content Include="Icons\Actions-view-calendar-tasks-icon.png" />
+    <Content Include="Icons\add-contact-icon.png" />
+    <Content Include="Icons\add-icon.png" />
+    <Content Include="Icons\Add.png" />
+    <Content Include="Icons\alert-icon %281%29.png" />
+    <Content Include="Icons\arrow.png" />
+    <Content Include="Icons\arrow_1.png" />
+    <Content Include="Icons\arrow_2.png" />
+    <Content Include="Icons\asd.gif" />
+    <Content Include="Icons\Bookmark-delete-icon.png" />
+    <Content Include="Icons\chat.png" />
+    <Content Include="Icons\check-icon %281%29.png" />
+    <Content Include="Icons\check-icon.png" />
+    <Content Include="Icons\checklist-icon.png" />
+    <Content Include="Icons\close.png" />
+    <Content Include="Icons\close_1.png" />
+    <Content Include="Icons\dalete.png" />
+    <Content Include="Icons\dalete_1.png" />
+    <Content Include="Icons\database-add-icon.png" />
+    <Content Include="Icons\database-add-icon_1.png" />
+    <Content Include="Icons\Database.png" />
+    <Content Include="Icons\delete-icon.png" />
+    <Content Include="Icons\delete-icon_1.png" />
+    <Content Include="Icons\Delete.png" />
+    <Content Include="Icons\edit.png" />
+    <Content Include="Icons\edit_1.png" />
+    <Content Include="Icons\Extract-todays-changes-icon.png" />
+    <Content Include="Icons\Files-New-File-icon.png" />
+    <Content Include="Icons\images.jpg" />
+    <Content Include="Icons\Invoice.png" />
+    <Content Include="Icons\leave.png" />
+    <Content Include="Icons\leave_1.png" />
+    <Content Include="Icons\License-manager-icon.png" />
+    <Content Include="Icons\login.png" />
+    <Content Include="Icons\logout-icon.png" />
+    <Content Include="Icons\logout.png" />
+    <Content Include="Icons\print.png" />
+    <Content Include="Icons\print_1.png" />
+    <Content Include="Icons\PU.jpg" />
+    <Content Include="Icons\Register.png" />
+    <Content Include="Icons\save-as-icon.png" />
+    <Content Include="Icons\save.png" />
+    <Content Include="Icons\save_1.png" />
+    <Content Include="Icons\search-icon.png" />
+    <Content Include="Icons\search-icon_1.png" />
+    <Content Include="Icons\Settings.png" />
+    <Content Include="Icons\setting_f001-20111103133100-00002.png" />
+    <Content Include="Icons\sign_in.png" />
+    <Content Include="Icons\Start-Menu-Search-icon.png" />
+    <Content Include="Icons\success-icon.png" />
+    <Content Include="Icons\Thumb-up-icon.png" />
+    <Content Include="Icons\Trash-icon.png" />
+    <Content Include="Icons\Users.png" />
+    <Content Include="Icons\view.png" />
+    <Content Include="Icons\view_1.png" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\10.jpg" />
+    <Content Include="Images\11.jpg" />
+    <Content Include="Images\12.jpg" />
+    <Content Include="Images\13.png" />
+    <Content Include="Images\2.png" />
+    <Content Include="Images\3.png" />
+    <Content Include="Images\4.png" />
+    <Content Include="Images\5.jpg" />
+    <Content Include="Images\6.jpg" />
+    <Content Include="Images\7.jpg" />
+    <Content Include="Images\8.png" />
+    <Content Include="Images\9.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\kZivgm.jpg" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\blue_gradient_wallpaper_hd_20_color.jpg" />
+    <ProjectReference Include="..\MessageBoxControlCenter\MessageBoxControlCenter.csproj">
+      <Project>{e9ee4679-4094-4093-8dbf-212c455a2022}</Project>
+      <Name>MessageBoxControlCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.AdminPanel\PMS.AdminPanel.csproj">
+      <Project>{0e291a01-fbc2-4c0d-8250-dcc4fd099690}</Project>
+      <Name>PMS.AdminPanel</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\1364243914_config.png" />
-    <Content Include="Resources\1364243918_graphic-design.png" />
-    <Content Include="Resources\1364243920_folder.png" />
-    <Content Include="Resources\1364243923_contact.png" />
-    <Content Include="Resources\1364243924_customers.png" />
-    <Content Include="Resources\1364243936_my-account.png" />
-    <Content Include="Resources\1364243940_check.png" />
-    <Content Include="Resources\1364243944_suppliers.png" />
-    <Content Include="Resources\1364243945_user.png" />
-    <Content Include="Resources\1364243947_sign-in.png" />
-    <Content Include="Resources\1364243953_logout.png" />
-    <Content Include="Resources\1364243956_refresh.png" />
-    <Content Include="Resources\1364243960_lightbulb.png" />
-    <Content Include="Resources\1364243971_sign-out.png" />
-    <Content Include="Resources\1364243984_settings.png" />
-    <Content Include="Resources\1384110565_Synchronize.png" />
-    <None Include="Resources\1488535914_search.png" />
-    <None Include="Resources\1488538476_icontexto-aurora-folders-pictures.png" />
-    <Content Include="Resources\Actions-list-add-user-icon.png" />
-    <Content Include="Resources\add-contact-icon.png" />
-    <Content Include="Resources\add-icon.png" />
-    <Content Include="Resources\alert-icon %281%29.png" />
-    <Content Include="Resources\arrow.png" />
-    <Content Include="Resources\arrow_1.png" />
-    <Content Include="Resources\arrow_2.png" />
-    <None Include="Resources\b388675ca707b60dde64716438bb8565.jpg" />
-    <Content Include="Resources\checklist-icon.png" />
-    <Content Include="Resources\close.png" />
-    <Content Include="Resources\close_1.png" />
-    <Content Include="Resources\dalete.png" />
-    <Content Include="Resources\dalete_1.png" />
-    <Content Include="Resources\database-add-icon.png" />
-    <Content Include="Resources\database-add-icon_1.png" />
-    <Content Include="Resources\delete-icon.png" />
-    <Content Include="Resources\delete-icon_1.png" />
-    <Content Include="Resources\edit.png" />
-    <Content Include="Resources\edit_1.png" />
-    <None Include="Resources\EmptyProfile.png" />
-    <Content Include="Resources\leave.png" />
-    <Content Include="Resources\leave_1.png" />
-    <Content Include="Resources\login.png" />
-    <Content Include="Resources\logout-icon.png" />
-    <Content Include="Resources\logout.png" />
-    <None Include="Resources\Our-Products.jpg" />
-    <Content Include="Resources\print.png" />
-    <Content Include="Resources\print_1.png" />
-    <Content Include="Resources\save.png" />
-    <Content Include="Resources\save_1.png" />
-    <Content Include="Resources\search-icon.png" />
-    <Content Include="Resources\search-icon_1.png" />
-    <Content Include="Resources\setting_f001-20111103133100-00002.png" />
-    <Content Include="Resources\sign_in.png" />
-    <None Include="Resources\Start-Menu-Search-icon.png" />
-    <Content Include="Resources\success-icon.png" />
-    <Content Include="Resources\Thumb-up-icon.png" />
-    <Content Include="Resources\Trash-icon.png" />
-    <Content Include="Resources\view.png" />
-    <Content Include="Resources\view_1.png" />
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeRegister));
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.btn_loginDetails = new MetroFramework.Controls.MetroButton();
             this.lbl_time2 = new MetroFramework.Drawing.Html.HtmlLabel();
@@ -68,6 +69,7 @@
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.txt_nic = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txt_mobile = new MetroFramework.Controls.MetroTextBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
@@ -83,7 +85,6 @@
             this.FormValidator = new System.Windows.Forms.ErrorProvider(this.components);
             this.formValidator3 = new System.Windows.Forms.ErrorProvider(this.components);
             this.Open_picture = new System.Windows.Forms.OpenFileDialog();
-            this.txt_nic = new MetroFramework.Controls.MetroTextBox();
             this.metroPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.emp_picture)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -97,7 +98,7 @@
             // 
             // metroPanel1
             // 
-            this.metroPanel1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.blue_gradient_wallpaper_hd_20_color;
+            this.metroPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroPanel1.BackgroundImage")));
             this.metroPanel1.Controls.Add(this.btn_loginDetails);
             this.metroPanel1.Controls.Add(this.lbl_time2);
             this.metroPanel1.Controls.Add(this.metroButton3);
@@ -114,7 +115,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(0, 28);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(1257, 628);
+            this.metroPanel1.Size = new System.Drawing.Size(1132, 628);
             this.metroPanel1.TabIndex = 1;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -122,9 +123,9 @@
             // 
             // btn_loginDetails
             // 
-            this.btn_loginDetails.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.save;
+            this.btn_loginDetails.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_loginDetails.BackgroundImage")));
             this.btn_loginDetails.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_loginDetails.Location = new System.Drawing.Point(1066, 421);
+            this.btn_loginDetails.Location = new System.Drawing.Point(974, 393);
             this.btn_loginDetails.Name = "btn_loginDetails";
             this.btn_loginDetails.Size = new System.Drawing.Size(143, 47);
             this.btn_loginDetails.TabIndex = 27;
@@ -138,39 +139,41 @@
             this.lbl_time2.AutoScrollMinSize = new System.Drawing.Size(35, 23);
             this.lbl_time2.AutoSize = false;
             this.lbl_time2.BackColor = System.Drawing.SystemColors.Window;
-            this.lbl_time2.Location = new System.Drawing.Point(1043, 14);
+            this.lbl_time2.Location = new System.Drawing.Point(980, 16);
             this.lbl_time2.Name = "lbl_time2";
-            this.lbl_time2.Size = new System.Drawing.Size(166, 23);
+            this.lbl_time2.Size = new System.Drawing.Size(131, 23);
             this.lbl_time2.TabIndex = 26;
             this.lbl_time2.Text = "Time";
             // 
             // metroButton3
             // 
-            this.metroButton3.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.close_1;
+            this.metroButton3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroButton3.BackgroundImage")));
             this.metroButton3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.metroButton3.Location = new System.Drawing.Point(1066, 557);
+            this.metroButton3.Location = new System.Drawing.Point(974, 529);
             this.metroButton3.Name = "metroButton3";
             this.metroButton3.Size = new System.Drawing.Size(143, 47);
             this.metroButton3.TabIndex = 25;
             this.metroButton3.Text = "Back";
             this.metroButton3.UseSelectable = true;
+            this.metroButton3.Click += new System.EventHandler(this.metroButton3_Click);
             // 
             // metroButton2
             // 
-            this.metroButton2.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources._1364243914_config;
+            this.metroButton2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroButton2.BackgroundImage")));
             this.metroButton2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.metroButton2.Location = new System.Drawing.Point(1066, 491);
+            this.metroButton2.Location = new System.Drawing.Point(974, 463);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(143, 47);
             this.metroButton2.TabIndex = 24;
             this.metroButton2.Text = "Update Employee";
             this.metroButton2.UseSelectable = true;
+            this.metroButton2.Click += new System.EventHandler(this.metroButton2_Click);
             // 
             // btn_Add
             // 
-            this.btn_Add.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.save;
+            this.btn_Add.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Add.BackgroundImage")));
             this.btn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_Add.Location = new System.Drawing.Point(1066, 348);
+            this.btn_Add.Location = new System.Drawing.Point(974, 320);
             this.btn_Add.Name = "btn_Add";
             this.btn_Add.Size = new System.Drawing.Size(143, 47);
             this.btn_Add.TabIndex = 23;
@@ -182,7 +185,7 @@
             // 
             this.emp_picture.BackColor = System.Drawing.Color.White;
             this.emp_picture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.emp_picture.Location = new System.Drawing.Point(1053, 60);
+            this.emp_picture.Location = new System.Drawing.Point(974, 46);
             this.emp_picture.Name = "emp_picture";
             this.emp_picture.Size = new System.Drawing.Size(143, 136);
             this.emp_picture.TabIndex = 13;
@@ -190,7 +193,9 @@
             // 
             // metroButton1
             // 
-            this.metroButton1.Location = new System.Drawing.Point(1076, 217);
+            this.metroButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroButton1.BackgroundImage")));
+            this.metroButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.metroButton1.Location = new System.Drawing.Point(993, 188);
             this.metroButton1.Name = "metroButton1";
             this.metroButton1.Size = new System.Drawing.Size(97, 32);
             this.metroButton1.TabIndex = 0;
@@ -207,7 +212,7 @@
             this.groupBox3.Controls.Add(this.metroLabel18);
             this.groupBox3.Controls.Add(this.metroLabel17);
             this.groupBox3.Controls.Add(this.metroLabel16);
-            this.groupBox3.Location = new System.Drawing.Point(517, 309);
+            this.groupBox3.Location = new System.Drawing.Point(492, 281);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(476, 295);
             this.groupBox3.TabIndex = 22;
@@ -352,7 +357,7 @@
             this.groupBox1.Controls.Add(this.metroLabel13);
             this.groupBox1.Controls.Add(this.metroLabel12);
             this.groupBox1.Controls.Add(this.metroLabel11);
-            this.groupBox1.Location = new System.Drawing.Point(517, 60);
+            this.groupBox1.Location = new System.Drawing.Point(492, 47);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(476, 228);
             this.groupBox1.TabIndex = 17;
@@ -372,7 +377,6 @@
             this.txt_confirmPass.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txt_confirmPass.CustomButton.UseSelectable = true;
             this.txt_confirmPass.CustomButton.Visible = false;
-            this.txt_confirmPass.Enabled = false;
             this.txt_confirmPass.Lines = new string[0];
             this.txt_confirmPass.Location = new System.Drawing.Point(217, 170);
             this.txt_confirmPass.MaxLength = 32767;
@@ -403,7 +407,6 @@
             this.txt_password.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
             this.txt_password.CustomButton.UseSelectable = true;
             this.txt_password.CustomButton.Visible = false;
-            this.txt_password.Enabled = false;
             this.txt_password.Lines = new string[0];
             this.txt_password.Location = new System.Drawing.Point(217, 113);
             this.txt_password.MaxLength = 32767;
@@ -513,9 +516,9 @@
             this.groupBox2.Controls.Add(this.metroLabel9);
             this.groupBox2.Controls.Add(this.txt_lastName);
             this.groupBox2.Controls.Add(this.txt_empName);
-            this.groupBox2.Location = new System.Drawing.Point(22, 60);
+            this.groupBox2.Location = new System.Drawing.Point(8, 47);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(478, 544);
+            this.groupBox2.Size = new System.Drawing.Size(478, 529);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             // 
@@ -671,21 +674,6 @@
             // cmb_desigType
             // 
             this.cmb_desigType.FormattingEnabled = true;
-            this.cmb_desigType.Items.AddRange(new object[] {
-            "Guest Services Manager",
-            "Housekeeping Supervisor",
-            "Food and Beverage Manager",
-            "Executive Meeting Manager",
-            "Catering Manager",
-            "Catering Sales Manager",
-            "Cafe Manager",
-            "Back Office Assistant",
-            "Room Service Worker",
-            "Director of Operations",
-            "Director of Maintenance",
-            "Executive Housekeeper",
-            "Restaurant Manager",
-            "Chef"});
             this.cmb_desigType.Location = new System.Drawing.Point(173, 265);
             this.cmb_desigType.Name = "cmb_desigType";
             this.cmb_desigType.Size = new System.Drawing.Size(262, 21);
@@ -751,6 +739,38 @@
             this.metroLabel5.TabIndex = 4;
             this.metroLabel5.Text = "NIC";
             // 
+            // txt_nic
+            // 
+            // 
+            // 
+            // 
+            this.txt_nic.CustomButton.Image = null;
+            this.txt_nic.CustomButton.Location = new System.Drawing.Point(240, 1);
+            this.txt_nic.CustomButton.Name = "";
+            this.txt_nic.CustomButton.Size = new System.Drawing.Size(21, 21);
+            this.txt_nic.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.txt_nic.CustomButton.TabIndex = 1;
+            this.txt_nic.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.txt_nic.CustomButton.UseSelectable = true;
+            this.txt_nic.CustomButton.Visible = false;
+            this.txt_nic.Lines = new string[0];
+            this.txt_nic.Location = new System.Drawing.Point(173, 217);
+            this.txt_nic.MaxLength = 10;
+            this.txt_nic.Name = "txt_nic";
+            this.txt_nic.PasswordChar = '\0';
+            this.txt_nic.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.txt_nic.SelectedText = "";
+            this.txt_nic.SelectionLength = 0;
+            this.txt_nic.SelectionStart = 0;
+            this.txt_nic.ShortcutsEnabled = true;
+            this.txt_nic.Size = new System.Drawing.Size(262, 23);
+            this.txt_nic.TabIndex = 4;
+            this.txt_nic.UseSelectable = true;
+            this.txt_nic.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.txt_nic.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_nic.TextChanged += new System.EventHandler(this.txt_nic_TextChanged);
+            this.txt_nic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nic_KeyPress);
+            // 
             // metroLabel6
             // 
             this.metroLabel6.AutoSize = true;
@@ -776,7 +796,7 @@
             this.txt_mobile.CustomButton.Visible = false;
             this.txt_mobile.Lines = new string[0];
             this.txt_mobile.Location = new System.Drawing.Point(173, 174);
-            this.txt_mobile.MaxLength = 32767;
+            this.txt_mobile.MaxLength = 10;
             this.txt_mobile.Name = "txt_mobile";
             this.txt_mobile.PasswordChar = '\0';
             this.txt_mobile.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -817,7 +837,7 @@
             this.txt_contact.CustomButton.Visible = false;
             this.txt_contact.Lines = new string[0];
             this.txt_contact.Location = new System.Drawing.Point(173, 127);
-            this.txt_contact.MaxLength = 32767;
+            this.txt_contact.MaxLength = 10;
             this.txt_contact.Name = "txt_contact";
             this.txt_contact.PasswordChar = '\0';
             this.txt_contact.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -951,44 +971,14 @@
             // 
             this.Open_picture.FileName = "openFileDialog1";
             // 
-            // txt_nic
-            // 
-            // 
-            // 
-            // 
-            this.txt_nic.CustomButton.Image = null;
-            this.txt_nic.CustomButton.Location = new System.Drawing.Point(240, 1);
-            this.txt_nic.CustomButton.Name = "";
-            this.txt_nic.CustomButton.Size = new System.Drawing.Size(21, 21);
-            this.txt_nic.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.txt_nic.CustomButton.TabIndex = 1;
-            this.txt_nic.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.txt_nic.CustomButton.UseSelectable = true;
-            this.txt_nic.CustomButton.Visible = false;
-            this.txt_nic.Lines = new string[0];
-            this.txt_nic.Location = new System.Drawing.Point(173, 217);
-            this.txt_nic.MaxLength = 32767;
-            this.txt_nic.Name = "txt_nic";
-            this.txt_nic.PasswordChar = '\0';
-            this.txt_nic.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.txt_nic.SelectedText = "";
-            this.txt_nic.SelectionLength = 0;
-            this.txt_nic.SelectionStart = 0;
-            this.txt_nic.ShortcutsEnabled = true;
-            this.txt_nic.Size = new System.Drawing.Size(262, 23);
-            this.txt_nic.TabIndex = 4;
-            this.txt_nic.UseSelectable = true;
-            this.txt_nic.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.txt_nic.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txt_nic.TextChanged += new System.EventHandler(this.txt_nic_TextChanged);
-            this.txt_nic.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nic_KeyPress);
-            // 
             // EmployeeRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1255, 656);
+            this.ClientSize = new System.Drawing.Size(1123, 611);
             this.Controls.Add(this.metroPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "EmployeeRegister";
             this.Style = MetroFramework.MetroColorStyle.Black;
             this.Load += new System.EventHandler(this.EmployeeRegister_Load);
@@ -1055,8 +1045,6 @@
         private System.Windows.Forms.PictureBox emp_picture;
         private MetroFramework.Controls.MetroButton metroButton1;
         private MetroFramework.Controls.MetroButton btn_Add;
-        private MetroFramework.Controls.MetroButton metroButton2;
-        private MetroFramework.Controls.MetroButton metroButton3;
         private MetroFramework.Drawing.Html.HtmlLabel lbl_time2;
         private System.Windows.Forms.Timer emp_reg_timer;
         private System.Windows.Forms.ErrorProvider Error_empInfo;
@@ -1066,5 +1054,7 @@
         private System.Windows.Forms.OpenFileDialog Open_picture;
         private MetroFramework.Controls.MetroButton btn_loginDetails;
         private MetroFramework.Controls.MetroTextBox txt_nic;
+        public MetroFramework.Controls.MetroButton metroButton2;
+        public MetroFramework.Controls.MetroButton metroButton3;
     }
 }

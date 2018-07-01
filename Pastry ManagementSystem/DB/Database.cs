@@ -16,7 +16,23 @@ namespace Pastry_ManagementSystem.DB
         public Database()
         {
             con = new SqlConnection();
-            con.ConnectionString = "Data Source=DESKTOP-0SKPCU9\\SQL2016;Initial Catalog=BusBookingSystem;Integrated Security=True";
+            //con.ConnectionString = "Data Source=DESKTOP-AGA9E1P;Initial Catalog=PastryManagementSystem;Persist Security Info=True;User ID=sek001;Password=ashan19960129";
+            //===== the following connection string is to my lap (My lap is the server for one user has to create 3 more users)
+            //con.ConnectionString = "Data Source=DESKTOP-0SKPCU9\\SQL2016;Initial Catalog=BusBookingSystem;Persist Security Info=True;User ID=AshanPerera;Password=ashan19960129";
+            //
+            //
+            //home pc my personal
+            // con.ConnectionString = @"Data Source=DESKTOP-0SKPCU9\SQL2016;Initial Catalog=PastryManagementSystem;Persist Security Info=True;User ID=AshanPerera;Password=ashan19960129";
+            //
+            //
+            //for test area
+            //con.ConnectionString = @"Data Source=DESKTOP-0SKPCU9\SQL2016;Initial Catalog=Pastry_Management_System;Integrated Security=True";
+            //
+            //
+            con.ConnectionString = @"Data Source=DESKTOP-BKL3FJL\SQLSERVER2016OBJ;Initial Catalog=Pastry_Management_System;Persist Security Info=True;User ID=sa;Password=ashan19960129";
+            //
+            //
+            //con.ConnectionString = @"Data Source=DESKTOP-AGA9E1P;Initial Catalog=Pastry_Management_System;Integrated Security=True";
         }
         public void openCon()
         {
@@ -33,8 +49,9 @@ namespace Pastry_ManagementSystem.DB
             {
                 openCon();
                 cmd = new SqlCommand(query, con);
-                dataReader = cmd.ExecuteReader();
+                dataReader = cmd.ExecuteReader();             
                 return dataReader;
+              
             }
             catch (SqlException)
             {

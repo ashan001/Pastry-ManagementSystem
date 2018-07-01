@@ -1,4 +1,5 @@
-﻿using Pastry_ManagementSystem.DB;
+﻿using MessageBoxControlCenter.MessageBoxes;
+using Pastry_ManagementSystem.DB;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,8 +16,7 @@ namespace Pastry_ManagementSystem.UI
     public partial class CustomerRegister : MetroFramework.Forms.MetroForm
     {
         Database db = new Database();
-        public string sysYear { get; set; }
-        private string uniqueKeyForCus { get; set; } = "CUS";
+        public string sysYear { get; set; }    
         public string str { get; set; }
         protected string cusID { get; set; }
         public string address { get; set; }
@@ -223,6 +223,7 @@ namespace Pastry_ManagementSystem.UI
         {
             try
             {
+                CreateCusID id = new CreateCusID();
                 string sbStringYear;
                 sbStringYear = sysYear.Substring(2);
                 string query;
@@ -231,14 +232,14 @@ namespace Pastry_ManagementSystem.UI
                 No_id = db.returnDBRows(query);
                 db.closeCon();
                 No_id++;
-                cusID = ((uniqueKeyForCus) + (sbStringYear) + (No_id)).ToString();
+                cusID = ((id.getCusID()) + (sbStringYear) + (No_id)).ToString();
                 txt_id.Text = cusID.ToString();
                 //MessageBox.Show("" + cusID);
                 //id works fine
             }
             catch (Exception)
-            {
-                MessageBox.Show("System crashed plz log out try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {               
+                MsgBox.Error("Will saved up to here ,please start with new session");
             }
         }//end of customer id 
         private void btn_save_Click(object sender, EventArgs e)
@@ -249,32 +250,32 @@ namespace Pastry_ManagementSystem.UI
         private void btn_check_Click(object sender, EventArgs e)
         {
             if (txt_fName.Text.Length == 0)
-            {
-                MessageBox.Show("Please enter customer's first name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {             
+                MsgBox.Error("Please enter customer's first name");
             }
             else if (txt_lName.Text.Length == 0)
             {
-                MessageBox.Show("Please enter customer's last name", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.Error("Please enter customer's last name");
             }
             else if (txt_nic.Text.Length == 0)
             {
-                MessageBox.Show("Please enter customer's NIC", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.Error("Please enter customer's NIC");
             }
             else if ((txt_line1.Text.Length == 0) && (txt_line2.Text.Length == 0) && (txt_city.Text.Length == 0))
-            {
-                MessageBox.Show("Please check customer's address again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {               
+                MsgBox.Error("Please check customer's address again");
             }
             else if (dtp_date.Value.Equals(null))
             {
-                MessageBox.Show("Please select the date", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.Error("Please select the date");
             }
             else if (txt_contactNo.Text.Length == 0)
             {
-                MessageBox.Show("Please enter customer's contact number ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.Error("Please enter customer's contact number ");
             }
             else if (rtxt_Comments.Text.Length == 0)
-            {
-                MessageBox.Show("Please fill comment field ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {               
+                MsgBox.Error("Please fill comment field ");
             }
             else
             {
@@ -286,8 +287,8 @@ namespace Pastry_ManagementSystem.UI
                    
                 }
                 catch
-                {
-                    MessageBox.Show("Process is failed please check the inputs and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {                   
+                    MsgBox.Error("Process is failed please check the inputs and try again");
                 }
 
             }
@@ -303,24 +304,39 @@ namespace Pastry_ManagementSystem.UI
                 db.closeCon();
                 if (line == 1)
                 {
-                    MessageBox.Show("Customer Successfully saved", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MsgBox.Information("Customer Successfully saved");
                 }
                 else
-                {
-                    MessageBox.Show("Process is failed please check the inputs and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {                    
+                    MsgBox.Error("Process is failed please check the inputs and try again");
                 }
             }
             catch (Exception)
-            {
-                MessageBox.Show("Process is failed please check the inputs and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {                
+                MsgBox.Error("Process is failed please check the inputs and try again");
             }
 
         }
 
         private void btn_back_Click(object sender, EventArgs e)
+        {          
+           Hide();
+        }
+
+        private void btn_Update_Click(object sender, EventArgs e)
         {
-            new CashierMenu().Show();
-            this.Hide();
+            new UpdateCustomerScreen().ShowDialog();
+            Hide();            
+        }
+    }
+    public class CreateCusID
+    {
+        static Random generator = new Random();
+        string cusID = generator.Next(0001, 10001).ToString();
+
+        public string getCusID()
+        {
+            return cusID;
         }
     }
 }

@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0E291A01-FBC2-4C0D-8250-DCC4FD099690}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PMS.AdminPanel</RootNamespace>
+    <AssemblyName>PMS.AdminPanel</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Custom-Icon-Design-Flatastic-11-Shop.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net40\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="MetroFramework">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminObj\EmployeeDetaObj.cs" />
+    <Compile Include="ExtraClasses\ApplicationSettings.cs" />
+    <Compile Include="ExtraClasses\ChangePassProp.cs" />
+    <Compile Include="ExtraClasses\ChangePassword\Prop.cs" />
+    <Compile Include="ExtraClasses\CheckUser.cs" />
+    <Compile Include="ExtraClasses\LoginObject.cs" />
+    <Compile Include="ExtraClasses\WarehouseDetailedTable.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Admin\Add_Warehouse_Info.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Admin\Add_Warehouse_Info.Designer.cs">
+      <DependentUpon>Add_Warehouse_Info.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Admin\CreateLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Admin\CreateLogin.Designer.cs">
+      <DependentUpon>CreateLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Admin\ViewEmployeeID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Admin\ViewEmployeeID.Designer.cs">
+      <DependentUpon>ViewEmployeeID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\frmMainForAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\frmMainForAdmin.Designer.cs">
+      <DependentUpon>frmMainForAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Properties\PropertyClassForChangePass.cs" />
+    <Compile Include="UI\ReportingModule\MapObjects\CustomerDetails.cs" />
+    <Compile Include="UI\ReportingModule\MapObjects\EmployeeDetails.cs" />
+    <Compile Include="UI\ReportingModule\MapObjects\TransactionObjects.cs" />
+    <Compile Include="UI\ReportingModule\PrintUI\CustomerService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\PrintUI\CustomerService.Designer.cs">
+      <DependentUpon>CustomerService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportingModule\PrintUI\CustomerUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\PrintUI\CustomerUI.Designer.cs">
+      <DependentUpon>CustomerUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportingModule\PrintUI\EmployeeRepUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\PrintUI\EmployeeRepUI.Designer.cs">
+      <DependentUpon>EmployeeRepUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportingModule\PrintUI\TrascationUI_Rep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\PrintUI\TrascationUI_Rep.Designer.cs">
+      <DependentUpon>TrascationUI_Rep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\CustomerRep.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerRep.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\CustomerRep_UI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\CustomerRep_UI.Designer.cs">
+      <DependentUpon>CustomerRep_UI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\CustomerServiceRep1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerServiceRep.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\EmployeeReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\EmployeeRep_UI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\EmployeeRep_UI.Designer.cs">
+      <DependentUpon>EmployeeRep_UI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\StockTransactionReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\StockTransactionReport.Designer.cs">
+      <DependentUpon>StockTransactionReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReportingModule\Reports\TransactionReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransactionReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\User\frmChangePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\User\frmChangePassword.Designer.cs">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validations\EmailValidation.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="UI\Admin\Add_Warehouse_Info.resx">
+      <DependentUpon>Add_Warehouse_Info.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Admin\CreateLogin.resx">
+      <DependentUpon>CreateLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Admin\ViewEmployeeID.resx">
+      <DependentUpon>ViewEmployeeID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\frmMainForAdmin.resx">
+      <DependentUpon>frmMainForAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\PrintUI\CustomerService.resx">
+      <DependentUpon>CustomerService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\PrintUI\CustomerUI.resx">
+      <DependentUpon>CustomerUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\PrintUI\EmployeeRepUI.resx">
+      <DependentUpon>EmployeeRepUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\PrintUI\TrascationUI_Rep.resx">
+      <DependentUpon>TrascationUI_Rep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\Reports\CustomerRep.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CustomerRep.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\Reports\CustomerRep_UI.resx">
+      <DependentUpon>CustomerRep_UI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\Reports\CustomerServiceRep.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>CustomerServiceRep1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\Reports\EmployeeReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>EmployeeReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\Reports\EmployeeRep_UI.resx">
+      <DependentUpon>EmployeeRep_UI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\Reports\StockTransactionReport.resx">
+      <DependentUpon>StockTransactionReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReportingModule\Reports\TransactionReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TransactionReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\User\frmChangePassword.resx">
+      <DependentUpon>frmChangePassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\PMS.AdminPanel.AdminObj.EmployeeDetaObj.datasource" />
+    <None Include="Properties\DataSources\PMS.AdminPanel.UI.ReportingModule.MapObjects.CustomerDetails.datasource" />
+    <None Include="Properties\DataSources\PMS.AdminPanel.UI.ReportingModule.MapObjects.EmployeeDetails.datasource" />
+    <None Include="Properties\DataSources\PMS.AdminPanel.UI.ReportingModule.MapObjects.TransactionObjects.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Icons\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MessageBoxControlCenter\MessageBoxControlCenter.csproj">
+      <Project>{e9ee4679-4094-4093-8dbf-212c455a2022}</Project>
+      <Name>MessageBoxControlCenter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PMS.Inventory\PMS.Inventory.csproj">
+      <Project>{601a1b05-afb6-4834-9332-707ba62fb277}</Project>
+      <Name>PMS.Inventory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Custom-Icon-Design-Flatastic-11-Shop.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

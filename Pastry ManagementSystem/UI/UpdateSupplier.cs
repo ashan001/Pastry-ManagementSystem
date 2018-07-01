@@ -1,7 +1,10 @@
 ﻿using Pastry_ManagementSystem.DB;
+using Pastry_ManagementSystem.ExtraClassesToMapData;
 using System;
+using Dapper;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -18,6 +21,7 @@ namespace Pastry_ManagementSystem.UI
     {
         Database db = new Database();
         protected string email { get; set; }
+       
         public UpdateSupplier()
         {
             InitializeComponent();
@@ -62,46 +66,52 @@ namespace Pastry_ManagementSystem.UI
         {
             if (txt_suppID.Text.Length == 0 && txt_contact.Text.Length == 0 && txt_cmpnyName.Text.Length == 0)
             {
-                MessageBox.Show($"Please Fill all fields or one field is enough for find the supplier", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Please Fill all fields or one field is enough for find the supplier", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             else
             {
-                //do the process
-                string sql = null;
-                SqlDataReader reader;
                 try
                 {
-                    sql = "Select DISTINCT * From supplier_table where supp_ID ='"+ txt_suppID .Text+ "' OR contactNumber='"+txt_contact.Text+ "' OR company_Name='"+txt_cmpnyName.Text+"'";
-                    reader = db.getData(sql);
-                    while (reader.Read())
+                    string sql = null;
+                    using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
                     {
-                        v_suppID = reader["supp_ID"].ToString();
-                        v_contactNum = Convert.ToInt32(reader["contactNumber"].ToString());
-                        v_companyName = reader["company_Name"].ToString();
-                        txt_firstName.Text = reader["supp_FirstName"].ToString();
-                        txt_lastName.Text = reader["supp_lastName"].ToString();
-                        txt_companyName.Text = reader["company_Name"].ToString();
-                        rrtxt_fullAddress.Text = reader["company_Address"].ToString();
-                        txt_contactNum.Text = reader["contactNumber"].ToString();
-                        txt_nic.Text = reader["NIC"].ToString();
-                        txt_email.Text = reader["emailAddress"].ToString();
-                        dtp_regDate.Text = reader["RegisteredDate"].ToString();
-                        txt_faxNum.Text = reader["fax_Num"].ToString();
-                        txt_siteName.Text = reader["web_siteName"].ToString();
-                        rtxt_comments.Text = reader["Comments"].ToString();
+                        if (db.State==ConnectionState.Closed)
+                        {
+                            db.Open();
+                            sql = $"Select  * From supplier_table where supp_ID ='{ txt_suppID.Text }' OR contactNumber='{ txt_contact.Text }' OR company_Name='{ txt_cmpnyName.Text }'";
+                            SupplierClass obj = db.Query<SupplierClass>(sql, commandType: CommandType.Text).SingleOrDefault();
+                            if (obj != null)
+                            {
+                                txt_firstName.Text = obj.supp_FirstName;
+                                txt_lastName.Text = obj.supp_lastName;
+                                txt_companyName.Text = obj.company_Name;
+                                rrtxt_fullAddress.Text = obj.company_Address;
+                                txt_contactNum.Text = obj.contactNumber.ToString();
+                                txt_nic.Text = obj.NIC;
+                                txt_email.Text = obj.emailAddress;
+                                dtp_regDate.Text = obj.RegisteredDate.ToString();
+                                txt_faxNum.Text = obj.fax_Num.ToString();
+                                txt_siteName.Text = obj.web_siteName;
+                                rtxt_comments.Text = obj.Comments;
+                                changeTheBehavior();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Invalid inputs please try again ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
-                    db.closeCon();
-                    if (v_suppID !=txt_suppID.Text && v_contactNum.ToString()!=txt_contact.Text && v_companyName!= txt_cmpnyName.Text)
-                    {
-                        MessageBox.Show("There's no record like that please check again","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                    }                    
                 }
                 catch (Exception)
                 {
-
                 }
             }
-
+        }
+        private void changeTheBehavior()
+        {
+            groupBox2.Enabled = true;
+            groupBox3.Enabled = true;
+            groupBox1.Enabled = false;
         }
 
         private void txt_suppID_TextChanged(object sender, EventArgs e)
@@ -118,6 +128,11 @@ namespace Pastry_ManagementSystem.UI
                 txt_faxNum.Clear();
                 txt_siteName.Clear();
                 rtxt_comments.Clear();
+                db.closeCon();
+                FormValidator.Clear();
+                FormValidator2.Clear();
+                groupBox2.Enabled = false;
+                groupBox3.Enabled = false;
             }
         }
         int line = 0;
@@ -159,6 +174,11 @@ namespace Pastry_ManagementSystem.UI
                 txt_faxNum.Clear();
                 txt_siteName.Clear();
                 rtxt_comments.Clear();
+                db.closeCon();
+                FormValidator.Clear();
+                FormValidator2.Clear();
+                groupBox2.Enabled = false;
+                groupBox3.Enabled = false;
             }
         }
 
@@ -373,9 +393,14 @@ namespace Pastry_ManagementSystem.UI
         private void UpdateSupplier_Load(object sender, EventArgs e)
         {
             Control.CheckForIllegalCrossThreadCalls = false;
+            SupplierRegister sr = new SupplierRegister();
+            sr.Hide();
         }
-        public void loadData(string v_name1, string v_name2, string v_cmpName, string v_add, int v_cont, string v_nic, string v_email, string v_date,int v_faxNum,string v_stiteName, string v_comment)
+        public void loadData(string v_id,string v_contact,string v_name1, string v_name2, string v_cmpName, string v_add, int v_cont, string v_nic, string v_email, string v_date,int v_faxNum,string v_stiteName, string v_comment)
         {
+            txt_suppID.Text = v_id;
+            txt_contact.Text = v_contact;
+            txt_cmpnyName.Text = v_cmpName;
             txt_firstName.Text = v_name1.ToString();
             txt_lastName.Text = v_name2.ToString();
             txt_companyName.Text = v_cmpName.ToString();
@@ -387,6 +412,8 @@ namespace Pastry_ManagementSystem.UI
             txt_faxNum.Text = v_faxNum.ToString();
             txt_siteName.Text = v_stiteName.ToString();
             rtxt_comments.Text = v_comment.ToString();
+            groupBox2.Enabled = true;
+            groupBox3.Enabled = true;            
         }
 
         private void metroButton1_Click(object sender, EventArgs e)
@@ -395,6 +422,38 @@ namespace Pastry_ManagementSystem.UI
             this.Hide();
         }
 
+        private void MenuShow_Click(object sender, EventArgs e)
+        {
+            new SystemAdminMenu().Show(this);
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ClearFormData(this);
+        }
+        void ClearFormData(Control con)
+        {
+            foreach (Control c in con.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Clear();
+                else if (c is ComboBox)
+                    ((ComboBox)c).SelectedIndex = -1;
+                else if (c is DataGridView)
+                    ((DataGridView)c).Rows.Clear();
+                else if (c is DateTimePicker)
+                    ((DateTimePicker)c).Value = DateTime.Now.Date;
+                else
+                {
+                    ClearFormData(c);
+                    txt_suppID.Enabled = true;
+                    txt_contact.Enabled = true;
+                    txt_companyName.Enabled = true;
+                    groupBox1.Enabled = true;
+                }            
+                       
+            }
+        }
         private void txt_contact_TextChanged(object sender, EventArgs e)
         {
             if (txt_contact.Text.Length == 0)
@@ -409,6 +468,11 @@ namespace Pastry_ManagementSystem.UI
                 txt_faxNum.Clear();
                 txt_siteName.Clear();
                 rtxt_comments.Clear();
+                db.closeCon();
+                FormValidator.Clear();
+                FormValidator2.Clear();
+                groupBox2.Enabled = false;
+                groupBox3.Enabled = false;
             }
         }
 

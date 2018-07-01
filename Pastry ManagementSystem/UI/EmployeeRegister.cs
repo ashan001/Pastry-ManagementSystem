@@ -1,5 +1,7 @@
 ﻿using Pastry_ManagementSystem.DB;
 using System;
+using System.Configuration;
+using Dapper;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -7,6 +9,8 @@ using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.IO;
+using System.Data;
+using MessageBoxControlCenter.MessageBoxes;
 
 namespace Pastry_ManagementSystem.UI
 {
@@ -32,11 +36,33 @@ namespace Pastry_ManagementSystem.UI
             InitializeComponent();
             emp_reg_timer.Start();
         }
+        SqlDataReader reader;
         private void EmployeeRegister_Load(object sender, EventArgs e)
         {
             cmb_desigType.BackColor = Color.LightBlue;
             cmb_desigType.SelectedText = "Please Select your Designation".ToString();
             Control.CheckForIllegalCrossThreadCalls = false;
+            try
+            {
+                using (IDbConnection db=new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
+                {
+                    if (db.State == ConnectionState.Closed)
+                    {
+                        db.Open();
+                        string sql = "Select * From Designation_Master_table";
+                        IDataReader reader = db.ExecuteReader(sql);
+                        while (reader.Read())
+                        {
+                            cmb_desigType.Items.Add(reader["Designation_Type"].ToString());
+                        }
+                    }
+                }             
+            }
+            catch(Exception)
+            {
+
+            }
+            
         }
         private void emp_reg_timer_Tick(object sender, EventArgs e)
         {
@@ -53,31 +79,31 @@ namespace Pastry_ManagementSystem.UI
                 open.InitialDirectory = @"\c:";
                 open.Filter = "Image Files(*.jpg)|*.jpg|All Files(*.*)|*.*";
                 open.FilterIndex = 1;
-                if (open.ShowDialog()==System.Windows.Forms.DialogResult.OK)
+                if (open.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
                     if (open.CheckFileExists)
                     {
-
                         imgLoc = open.FileName.ToString();
                         emp_picture.SizeMode = PictureBoxSizeMode.StretchImage;
                         emp_picture.ImageLocation = imgLoc;
-                        path = Application.StartupPath.Substring(0,(Application.StartupPath.Length - 10));
-                        correctFileName = System.IO.Path.GetFileName(open.FileName);
-                        System.IO.File.Copy(open.FileName,path + "\\ServerSideImageFolder\\" + correctFileName);
+                        path = Application.StartupPath;
+                        correctFileName = System.IO.Path.GetFileName(open.FileName);                       
+                        System.IO.File.Copy(open.FileName,path+"\\ServerSideImageFolder\\"+correctFileName);
                     }
                 }
+
             }
-            catch (FormatException)
-            {
-                MessageBox.Show("Please check your file again and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (FormatException ex)
+            {               
+                MsgBox.Exception(ex);
             }
-            catch (OutOfMemoryException)
+            catch (OutOfMemoryException ex)
             {
-                MessageBox.Show("Please check your file again and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.Exception(ex);
             }
             catch (Exception)
             {
-                MessageBox.Show("Please check your file again and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             
             }
         }
 
@@ -217,6 +243,10 @@ namespace Pastry_ManagementSystem.UI
             {
                 Error_empInfo.SetError(txt_mobile, "invalid mobile number.check again");
             }//end of the mobile number will more than 10 digits
+            else if (txt_mobile.Text.Length < 10)
+            {
+                Error_empInfo.SetError(txt_mobile, "invalid mobile number.check again");
+            }
             else
             {
                 Error_empInfo.Clear();
@@ -483,21 +513,21 @@ namespace Pastry_ManagementSystem.UI
                                                             {
                                                                 string sql = null;
                                                                 int i;
-                                                                sql = "Insert into Employee_Master_Table Values ('" + txt_userName.Text + "','" + txt_empName.Text + "','" + txt_lastName.Text + "','" + txt_contact.Text + "','" + txt_mobile.Text + "','" + txt_nic.Text + "','" + designation + "','" + txt_email.Text + "','" + dateOfBirth + "','" + age + "','" + txt_address.Text + "','" + txt_salary.Text + "','" + txt_question1.Text + "','" + txt_question2.Text + "','" + txt_question3.Text + "','\\ServerSideImageFolder\\" + correctFileName+ "')";
+                                                                sql = "Insert into Employee_Master_Table Values ('" + txt_userName.Text + "','" + txt_empName.Text + "','" + txt_lastName.Text + "','" + txt_contact.Text + "','" + txt_mobile.Text + "','" + txt_nic.Text + "','" + designation + "','" + txt_email.Text + "','" + dateOfBirth + "','" + age + "','" + txt_address.Text + "','" + txt_salary.Text + "','" + txt_question1.Text + "','" + txt_question2.Text + "','" + txt_question3.Text + "','\\ServerSideImageFolder\\" + correctFileName+ "','"+DateTime.Now.ToString().Substring(0,9)+"')";
                                                                 i = db.update_del_insert_Data(sql);
                                                                 db.closeCon();
                                                                 if (i == 1)
-                                                                {
-                                                                    MessageBox.Show("Successfully Saved","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                                                                {                                                                    
+                                                                    MsgBox.Information("Successfully Saved");
                                                                 }
                                                                 else
-                                                                {
-                                                                    MessageBox.Show("Please check your inputs and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                {                                                                   
+                                                                    MsgBox.Error("Please check your inputs and try again");
                                                                 }
                                                             }
-                                                            catch (Exception)
+                                                            catch (Exception ex)
                                                             {
-                                                                MessageBox.Show("Please check your inputs and try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                                MsgBox.Exception(ex);
                                                             }
 
                                                         }
@@ -522,19 +552,26 @@ namespace Pastry_ManagementSystem.UI
         {
             try
             {
-                empID = SysDate.Substring(2);
-                string query;
-                query = "Select Count (emp_ID) From Employee_Master_Table";
-                int noOfId;
-                noOfId = db.returnDBRows(query);
-                db.closeCon();
-                noOfId++;
-                empID = (((BegEmpIDString) + (empID) + (noOfId)).ToString());
-                txt_userName.Text = empID.ToString();
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
+                {
+                    if (db.State == ConnectionState.Closed)
+                    {
+                        db.Open();
+                        EmployeeNo obj = new EmployeeNo();
+                        empID = SysDate.Substring(2);
+                        string query;
+                        query = "Select Count (emp_ID) From Employee_Master_Table";
+                        int noOfId;
+                        noOfId = db.ExecuteScalar<int>(query);
+                        noOfId++;
+                        empID = (((BegEmpIDString) + (empID) + (noOfId) + obj.getNum()).ToString()).ToLower();
+                        txt_userName.Text = empID.ToString();
+                    }
+                }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("System crashed plz log out try again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MsgBox.Exception(ex);
             }
         }
         private void setPassword()
@@ -547,17 +584,18 @@ namespace Pastry_ManagementSystem.UI
                 txt_confirmPass.Text = password.ToString();
             }
         }
-
+        public int x { get; set; } = 0;
         private void btn_loginDetails_Click(object sender, EventArgs e)
         {
             try
             {
                 string sql;
                 int line;
-                sql = "Insert into Emp_Login Values('" + txt_userName.Text + "','" + txt_empName.Text + "','" + txt_confirmPass.Text + "','" + txt_email.Text + "','" + cmb_desigType.SelectedItem.ToString() + "')";
+                sql = "Insert into Emp_Login Values('" + txt_userName.Text + "','" + txt_email.Text + "','" + txt_confirmPass.Text + "')";
                 line = db.update_del_insert_Data(sql);
                 if (line == 1)
                 {
+                    x = 1;                    
                     MessageBox.Show($"You have successfully saved employee {empName}", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
@@ -573,6 +611,28 @@ namespace Pastry_ManagementSystem.UI
             {
                 MessageBox.Show("Please check the form again", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void metroButton3_Click(object sender, EventArgs e)
+        {
+            new SystemAdminMenu().Show();
+            this.Hide();
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            new UpdateEmployee().Show();
+            this.Hide();
+        }
+    }
+    public class EmployeeNo
+    {
+        static Random generator = new Random();
+        string empNum = generator.Next(100,500).ToString();
+
+        public string getNum()
+        {
+            return empNum;
         }
     }
 }

@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateSupplier));
             this.FormValidator2 = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.MenuShow = new MetroFramework.Controls.MetroPanel();
+            this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.metroButton1 = new MetroFramework.Controls.MetroButton();
             this.btn_update = new MetroFramework.Controls.MetroButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -69,6 +72,7 @@
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.FormValidator = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnRefresh = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.FormValidator2)).BeginInit();
             this.panel1.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -83,26 +87,61 @@
             // 
             // panel1
             // 
-            this.panel1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.blue_gradient_wallpaper_hd_20_color;
+            this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
+            this.panel1.Controls.Add(this.btnRefresh);
+            this.panel1.Controls.Add(this.MenuShow);
+            this.panel1.Controls.Add(this.metroPanel1);
             this.panel1.Controls.Add(this.metroButton1);
             this.panel1.Controls.Add(this.btn_update);
             this.panel1.Controls.Add(this.groupBox3);
             this.panel1.Controls.Add(this.groupBox2);
             this.panel1.Controls.Add(this.lbl_welcome);
             this.panel1.Controls.Add(this.groupBox1);
-            this.panel1.Location = new System.Drawing.Point(1, 25);
+            this.panel1.Location = new System.Drawing.Point(-2, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1213, 600);
+            this.panel1.Size = new System.Drawing.Size(1226, 600);
             this.panel1.TabIndex = 0;
+            // 
+            // MenuShow
+            // 
+            this.MenuShow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("MenuShow.BackgroundImage")));
+            this.MenuShow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.MenuShow.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.MenuShow.HorizontalScrollbarBarColor = true;
+            this.MenuShow.HorizontalScrollbarHighlightOnWheel = false;
+            this.MenuShow.HorizontalScrollbarSize = 10;
+            this.MenuShow.Location = new System.Drawing.Point(1081, 297);
+            this.MenuShow.Name = "MenuShow";
+            this.MenuShow.Size = new System.Drawing.Size(129, 135);
+            this.MenuShow.TabIndex = 22;
+            this.MenuShow.VerticalScrollbarBarColor = true;
+            this.MenuShow.VerticalScrollbarHighlightOnWheel = false;
+            this.MenuShow.VerticalScrollbarSize = 10;
+            this.MenuShow.Click += new System.EventHandler(this.MenuShow_Click);
+            // 
+            // metroPanel1
+            // 
+            this.metroPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroPanel1.BackgroundImage")));
+            this.metroPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.metroPanel1.HorizontalScrollbarBarColor = true;
+            this.metroPanel1.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.HorizontalScrollbarSize = 10;
+            this.metroPanel1.Location = new System.Drawing.Point(1081, 156);
+            this.metroPanel1.Name = "metroPanel1";
+            this.metroPanel1.Size = new System.Drawing.Size(129, 126);
+            this.metroPanel1.TabIndex = 21;
+            this.metroPanel1.VerticalScrollbarBarColor = true;
+            this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel1.VerticalScrollbarSize = 10;
             // 
             // metroButton1
             // 
-            this.metroButton1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources._1364243971_sign_out1;
+            this.metroButton1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroButton1.BackgroundImage")));
             this.metroButton1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.metroButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.metroButton1.Location = new System.Drawing.Point(1077, 533);
+            this.metroButton1.Location = new System.Drawing.Point(1079, 549);
             this.metroButton1.Name = "metroButton1";
-            this.metroButton1.Size = new System.Drawing.Size(129, 57);
+            this.metroButton1.Size = new System.Drawing.Size(129, 42);
             this.metroButton1.TabIndex = 20;
             this.metroButton1.Text = "Back";
             this.metroButton1.UseSelectable = true;
@@ -110,12 +149,12 @@
             // 
             // btn_update
             // 
-            this.btn_update.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources._1364243914_config2;
+            this.btn_update.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_update.BackgroundImage")));
             this.btn_update.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_update.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_update.Location = new System.Drawing.Point(1077, 454);
+            this.btn_update.Location = new System.Drawing.Point(1081, 438);
             this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(129, 58);
+            this.btn_update.Size = new System.Drawing.Size(129, 44);
             this.btn_update.TabIndex = 19;
             this.btn_update.Text = "Update Supplier ";
             this.btn_update.UseSelectable = true;
@@ -131,7 +170,8 @@
             this.groupBox3.Controls.Add(this.metroLabel18);
             this.groupBox3.Controls.Add(this.dtp_regDate);
             this.groupBox3.Controls.Add(this.metroLabel19);
-            this.groupBox3.Location = new System.Drawing.Point(583, 154);
+            this.groupBox3.Enabled = false;
+            this.groupBox3.Location = new System.Drawing.Point(586, 155);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(488, 436);
             this.groupBox3.TabIndex = 17;
@@ -267,7 +307,8 @@
             this.groupBox2.Controls.Add(this.metroLabel13);
             this.groupBox2.Controls.Add(this.metroLabel14);
             this.groupBox2.Controls.Add(this.metroLabel15);
-            this.groupBox2.Location = new System.Drawing.Point(10, 154);
+            this.groupBox2.Enabled = false;
+            this.groupBox2.Location = new System.Drawing.Point(12, 155);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(567, 436);
             this.groupBox2.TabIndex = 16;
@@ -377,7 +418,7 @@
             this.txt_contactNum.CustomButton.Visible = false;
             this.txt_contactNum.Lines = new string[0];
             this.txt_contactNum.Location = new System.Drawing.Point(253, 300);
-            this.txt_contactNum.MaxLength = 32767;
+            this.txt_contactNum.MaxLength = 10;
             this.txt_contactNum.Name = "txt_contactNum";
             this.txt_contactNum.PasswordChar = '\0';
             this.txt_contactNum.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -546,7 +587,7 @@
             this.lbl_welcome.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.lbl_welcome.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.lbl_welcome.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_welcome.Location = new System.Drawing.Point(10, 12);
+            this.lbl_welcome.Location = new System.Drawing.Point(12, 12);
             this.lbl_welcome.Name = "lbl_welcome";
             this.lbl_welcome.Size = new System.Drawing.Size(181, 25);
             this.lbl_welcome.TabIndex = 15;
@@ -562,7 +603,7 @@
             this.groupBox1.Controls.Add(this.metroLabel3);
             this.groupBox1.Controls.Add(this.metroLabel2);
             this.groupBox1.Controls.Add(this.metroLabel1);
-            this.groupBox1.Location = new System.Drawing.Point(10, 41);
+            this.groupBox1.Location = new System.Drawing.Point(12, 41);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1196, 107);
             this.groupBox1.TabIndex = 0;
@@ -602,7 +643,7 @@
             // 
             // btn_search
             // 
-            this.btn_search.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.search_icon;
+            this.btn_search.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_search.BackgroundImage")));
             this.btn_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_search.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btn_search.Location = new System.Drawing.Point(1110, 59);
@@ -628,7 +669,7 @@
             this.txt_contact.CustomButton.Visible = false;
             this.txt_contact.Lines = new string[0];
             this.txt_contact.Location = new System.Drawing.Point(529, 30);
-            this.txt_contact.MaxLength = 32767;
+            this.txt_contact.MaxLength = 10;
             this.txt_contact.Name = "txt_contact";
             this.txt_contact.PasswordChar = '\0';
             this.txt_contact.ScrollBars = System.Windows.Forms.ScrollBars.None;
@@ -717,12 +758,26 @@
             // 
             this.FormValidator.ContainerControl = this;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRefresh.BackgroundImage")));
+            this.btnRefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRefresh.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRefresh.Location = new System.Drawing.Point(1081, 494);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(129, 42);
+            this.btnRefresh.TabIndex = 23;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseSelectable = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // UpdateSupplier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1216, 648);
+            this.ClientSize = new System.Drawing.Size(1217, 625);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdateSupplier";
             this.Style = MetroFramework.MetroColorStyle.Black;
             this.Load += new System.EventHandler(this.UpdateSupplier_Load);
@@ -782,5 +837,8 @@
         private MetroFramework.Controls.MetroButton btn_update;
         private System.Windows.Forms.RichTextBox rrtxt_fullAddress;
         private System.Windows.Forms.ErrorProvider FormValidator;
+        private MetroFramework.Controls.MetroPanel metroPanel1;
+        private MetroFramework.Controls.MetroPanel MenuShow;
+        private MetroFramework.Controls.MetroButton btnRefresh;
     }
 }

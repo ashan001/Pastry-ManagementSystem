@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchSupplierMessageBox));
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
+            this.lbl_welcome = new MetroFramework.Controls.MetroLabel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txt_cmpnyName = new MetroFramework.Controls.MetroTextBox();
             this.btn_search = new MetroFramework.Controls.MetroButton();
@@ -38,14 +40,13 @@
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.lbl_welcome = new MetroFramework.Controls.MetroLabel();
             this.metroPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // metroPanel1
             // 
-            this.metroPanel1.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.blue_gradient_wallpaper_hd_20_color1;
+            this.metroPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("metroPanel1.BackgroundImage")));
             this.metroPanel1.Controls.Add(this.lbl_welcome);
             this.metroPanel1.Controls.Add(this.groupBox1);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
@@ -58,6 +59,18 @@
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
+            // 
+            // lbl_welcome
+            // 
+            this.lbl_welcome.AutoSize = true;
+            this.lbl_welcome.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lbl_welcome.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lbl_welcome.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbl_welcome.Location = new System.Drawing.Point(8, 11);
+            this.lbl_welcome.Name = "lbl_welcome";
+            this.lbl_welcome.Size = new System.Drawing.Size(114, 25);
+            this.lbl_welcome.TabIndex = 16;
+            this.lbl_welcome.Text = "Information";
             // 
             // groupBox1
             // 
@@ -104,15 +117,16 @@
             this.txt_cmpnyName.UseSelectable = true;
             this.txt_cmpnyName.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txt_cmpnyName.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_cmpnyName.TextChanged += new System.EventHandler(this.txt_cmpnyName_TextChanged);
             // 
             // btn_search
             // 
-            this.btn_search.BackgroundImage = global::Pastry_ManagementSystem.Properties.Resources.search_icon;
+            this.btn_search.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_search.BackgroundImage")));
             this.btn_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btn_search.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_search.Location = new System.Drawing.Point(1110, 59);
+            this.btn_search.Location = new System.Drawing.Point(1117, 68);
             this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(78, 40);
+            this.btn_search.Size = new System.Drawing.Size(71, 37);
             this.btn_search.TabIndex = 16;
             this.btn_search.UseSelectable = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
@@ -146,6 +160,7 @@
             this.txt_contact.UseSelectable = true;
             this.txt_contact.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txt_contact.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_contact.TextChanged += new System.EventHandler(this.txt_contact_TextChanged);
             // 
             // txt_suppID
             // 
@@ -176,6 +191,7 @@
             this.txt_suppID.UseSelectable = true;
             this.txt_suppID.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txt_suppID.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.txt_suppID.TextChanged += new System.EventHandler(this.txt_suppID_TextChanged);
             // 
             // metroLabel4
             // 
@@ -214,24 +230,13 @@
             this.metroLabel1.TabIndex = 1;
             this.metroLabel1.Text = "Supplier Information";
             // 
-            // lbl_welcome
-            // 
-            this.lbl_welcome.AutoSize = true;
-            this.lbl_welcome.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lbl_welcome.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.lbl_welcome.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbl_welcome.Location = new System.Drawing.Point(8, 11);
-            this.lbl_welcome.Name = "lbl_welcome";
-            this.lbl_welcome.Size = new System.Drawing.Size(114, 25);
-            this.lbl_welcome.TabIndex = 16;
-            this.lbl_welcome.Text = "Information";
-            // 
             // SearchSupplierMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1211, 197);
             this.Controls.Add(this.metroPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchSupplierMessageBox";
             this.Style = MetroFramework.MetroColorStyle.Black;
             this.metroPanel1.ResumeLayout(false);

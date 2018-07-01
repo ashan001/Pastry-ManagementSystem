@@ -1,6 +1,8 @@
 ﻿using Pastry_ManagementSystem.DB;
+using System.Configuration;
+using Dapper;
 using System;
-using System.Threading; 
+using System.Threading;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,6 +12,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Pastry_ManagementSystem.UI.HelpScreens;
+using MessageBoxControlCenter.MessageBoxes;
+using System.Configuration;
+using Dapper;
+using Pastry_ManagementSystem.ExtraClassesToMapData;
 
 namespace Pastry_ManagementSystem.UI
 {
@@ -20,7 +27,7 @@ namespace Pastry_ManagementSystem.UI
         protected string v_purchasedID { get; set; }
         protected string itemID { get; set; }
         public string db_ItemName { get; set; }
-        Database db = new Database();
+        Database database = new Database();
         public AvailableRawMaterialScreen()
         {
             InitializeComponent();
@@ -33,45 +40,45 @@ namespace Pastry_ManagementSystem.UI
             Control.CheckForIllegalCrossThreadCalls = false;
             cmb_purchID.BackColor = Color.IndianRed;
             cmb_purchID.SelectedText = "Please Select purchase ID".ToString();
-            cmb_itemId.BackColor = Color.IndianRed;
-            cmb_itemId.SelectedText = "Please Select item id".ToString();
+            //cmb_itemId.BackColor = Color.IndianRed;
+            //cmb_itemId.SelectedText = "Please Select item id".ToString();
             try
             {
                 string sql = null;
                 SqlDataReader reader = null;
-                sql = "SELECT DISTINCT * FROM Item_Table WHERE item_id not in (SELECT TOP (SELECT COUNT(1)-1 FROM Item_Table) item_id FROM Item_Table)";
-                reader = db.getData(sql);
+                sql = "SELECT DISTINCT * FROM Item_File WHERE ItemID not in (SELECT TOP (SELECT COUNT(1)-1 FROM Item_File) ItemID FROM Item_File)";
+                reader = database.getData(sql);
                 while (reader.Read())
                 {
-                    txt_itemNo.Text = reader["item_id"].ToString();
+                    txt_itemNo.Text = reader["ItemID"].ToString();
                 }
-                db.closeCon();
+                database.closeCon();
                 if (!(txt_itemNo.Text.Length == 0 && txt_date.Text.Length == 0 && txt_time.Text.Length == 0))//condition works fine
                 {
                     sql2 = "Select DISTINCT * From purchase_order_header_file";
-                    reader2 = db.getData(sql2);
+                    reader2 = database.getData(sql2);
                     while (reader2.Read())
                     {
                         cmb_purchID.Items.Add(reader2["pur_id"].ToString());
                     }
-                    db.closeCon();
+                    database.closeCon();
                 }
             }
-            catch (TimeoutException)
+            catch (TimeoutException ex)
             {
-                //MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MsgBox.Exception(ex);
             }
-            catch (InsufficientMemoryException)
+            catch (InsufficientMemoryException ex)
             {
-                //MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MsgBox.Exception(ex);
             }
-            catch (InvalidProgramException)
+            catch (InvalidProgramException ex)
             {
-                //MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MsgBox.Exception(ex);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                //MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MsgBox.Exception(ex);
             }
             //load system date and time to text fields
             //for date
@@ -92,12 +99,12 @@ namespace Pastry_ManagementSystem.UI
                 SqlDataReader reader = null;
                 v_purchasedID = cmb_purchID.SelectedItem.ToString();
                 sql = "Select DISTINCT * From purchase_order_header_file where pur_id='" + v_purchasedID + "'";
-                reader = db.getData(sql);
+                reader = database.getData(sql);
                 while (reader.Read())
                 {
                     v_db_purID = reader["pur_id"].ToString();
                 }
-                db.closeCon();
+                database.closeCon();
                 if (v_purchasedID == v_db_purID)
                 {
                     txt_empID.Enabled = true;
@@ -120,7 +127,7 @@ namespace Pastry_ManagementSystem.UI
             try
             {
                 sql = "Select  * From Employee_Master_Table where emp_ID='" + txt_empID .Text+ "'";
-                reader = db.getData(sql);
+                reader = database.getData(sql);
                 while (reader.Read())
                 {
                     empID = reader["emp_ID"].ToString();
@@ -135,7 +142,7 @@ namespace Pastry_ManagementSystem.UI
                     txt_lName.Clear();
                     txt_designation.Clear();
                 }
-                db.closeCon();
+                database.closeCon();
             }
             catch (Exception)
             {
@@ -144,47 +151,47 @@ namespace Pastry_ManagementSystem.UI
         }
         private void txt_designation_TextChanged(object sender, EventArgs e)
         {
-            Thread th1 = new Thread(new ThreadStart(loadItemIDCombobox));
-            if (!(txt_empFName.Text.Length == 0 && txt_lName.Text.Length == 0 && txt_designation.Text.Length == 0))
-            {
-                th1.Start();   
-            }
+            //Thread th1 = new Thread(new ThreadStart(loadItemIDCombobox));
+            //if (!(txt_empFName.Text.Length == 0 && txt_lName.Text.Length == 0 && txt_designation.Text.Length == 0))
+            //{
+            //    th1.Start();   
+            //}
         }
-        private void loadItemIDCombobox()
-        {
-            try
-            {
-                string sql = null;
-                SqlDataReader reader = null;
-                sql = "Select DISTINCT  * From Item_Table";
-                reader = db.getData(sql);
-                while (reader.Read())
-                {
-                    cmb_itemId.Items.Add(reader["item_id"].ToString());
-                }
-                db.closeCon();
-            }
-            catch (Exception)
-            {
-                //MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-            }
-        }
+        //private void loadItemIDCombobox()
+        //{
+        //    try
+        //    {
+        //        string sql = null;
+        //        SqlDataReader reader = null;
+        //        sql = "Select DISTINCT  * From Item_File";
+        //        reader = db.getData(sql);
+        //        while (reader.Read())
+        //        {
+        //            cmb_itemId.Items.Add(reader["ItemID"].ToString());
+        //        }
+        //        db.closeCon();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        //MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+        //    }
+        //}
        
         private void cmb_itemId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cmb_itemId.BackColor = Color.LightGreen;
+          
             errorProvider1.Clear();
             try
             {
-                itemID = cmb_itemId.SelectedItem.ToString();
+                itemID = txtItemID.Text.ToString();
                 string sql = "Select DISTINCT * From Item_Table where item_id ='" + itemID + "'";
                 SqlDataReader reader;
-                reader = db.getData(sql);
+                reader = database.getData(sql);
                 while (reader.Read())
                 {
-                    db_ItemName = reader["item_Name"].ToString();
+                    txt_itemName.Text = reader["Item_Name"].ToString();
                 }
-                db.closeCon();
+                database.closeCon();
             }
             catch (Exception)
             {
@@ -236,10 +243,11 @@ namespace Pastry_ManagementSystem.UI
         private void metroButton1_Click(object sender, EventArgs e)
         {
             int n=grid_InfoThrowData.Rows.Add();
-            grid_InfoThrowData.Rows[n].Cells[0].Value = cmb_itemId.SelectedItem.ToString();
-            grid_InfoThrowData.Rows[n].Cells[1].Value = db_ItemName.ToString();
-            grid_InfoThrowData.Rows[n].Cells[2].Value = txt_qtyrequired.Text;
-            grid_InfoThrowData.Rows[n].Cells[3].Value = txt_availableQty.Text;
+            grid_InfoThrowData.Rows[n].Cells[0].Value = txtItemID.Text.ToString();
+            grid_InfoThrowData.Rows[n].Cells[1].Value = txt_itemName.Text.ToString();
+            grid_InfoThrowData.Rows[n].Cells[2].Value = txtWarehouse.Text;
+            grid_InfoThrowData.Rows[n].Cells[3].Value = txt_qtyrequired.Text;
+            grid_InfoThrowData.Rows[n].Cells[4].Value = txt_availableQty.Text;
            
         }
 
@@ -262,7 +270,11 @@ namespace Pastry_ManagementSystem.UI
             }
             else
             {
-                int n=0;
+            //    AvailableRawMatObjects obj = new AvailableRawMatObjects();
+            //    obj.ItemCode = txtItemID.Text;
+            //    obj.Quantity = Convert.ToInt32(txt_availableQty.Text);
+
+                int line2=0,res=0;
                 if (txt_availableQty.Text.Length == 0)
                 {
                     MessageBox.Show("Please check the form again and proceed");
@@ -271,28 +283,34 @@ namespace Pastry_ManagementSystem.UI
                 {
                     try
                     {
-                        for (int i = 0; i < grid_InfoThrowData.Rows.Count; i++)
+                        using (IDbConnection db=new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
                         {
-                            //MessageBox.Show(""+grid_foodMasterInfo.Rows[i].Cells["cl_index1"].Value);
-                            string sql1 = null;
-                            sql1 = "insert into Item_transaction_File Values('" + grid_InfoThrowData.Rows[i].Cells["cl_index1"].Value + "','" + grid_InfoThrowData.Rows[i].Cells["cl_itemName"].Value + "','" + grid_InfoThrowData.Rows[i].Cells["cl_index2"].Value + "','" + grid_InfoThrowData.Rows[i].Cells["cl_index3"].Value + "')";
-                            n = db.update_del_insert_Data(sql1);
-                            db.closeCon();
-                            
-                        }
-                        if (n > 0)
-                        {
-                            MessageBox.Show("Your Data saved successfully");
-                            this.btn_OK.Enabled = false;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Process is failed please try again");
+                            if (db.State == ConnectionState.Closed)
+                            {
+                                db.Open();
+                                for (int i = 0; i < grid_InfoThrowData.Rows.Count; i++)
+                                {
+                                    string sql1 = "insert into Item_transaction_File Values('" + grid_InfoThrowData.Rows[i].Cells["cl_index1"].Value + "','" + grid_InfoThrowData.Rows[i].Cells["cl_itemName"].Value + "','" + grid_InfoThrowData.Rows[i].Cells["cl_index2"].Value + "','" + grid_InfoThrowData.Rows[i].Cells["cl_index3"].Value + "')";
+                                    line2 = db.Execute(sql1);
+
+                                    string sql2 = $"Update Warehouse_Transaction_Table SET AvailableQty = AvailableQty + '{grid_InfoThrowData.Rows[i].Cells["cl_index3"].Value}' where referenceItemCode='{grid_InfoThrowData.Rows[i].Cells["cl_index1"].Value}' AND warehouseCode='{grid_InfoThrowData.Rows[i].Cells["cl_warehouse"].Value}'";
+                                    res = db.Execute(sql2);
+                                }
+                                if ((line2+res) > 0)
+                                {
+                                    MsgBox.Show(1);
+                                    this.btn_OK.Enabled = false;
+                                }
+                                else
+                                {
+                                    MsgBox.Show(0);
+                                }
+                            }
                         }
                     }
-                    catch (Exception)
+                    catch
                     {
-                        // MessageBox.Show("","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        throw;
                     }
                 }
             }
@@ -327,9 +345,9 @@ namespace Pastry_ManagementSystem.UI
         {
             txt_availableQty.Clear();
             txt_qtyrequired.Clear();
-            cmb_itemId.BackColor = Color.IndianRed;
-            errorProvider1.SetError(cmb_itemId,"Select Item id if you want to enter more");
             grid_InfoThrowData.Rows.Clear();
+            errorProvider1.Clear();
+            btn_OK.Enabled = true;
         }
 
         private void metroButton5_Click(object sender, EventArgs e)
@@ -339,7 +357,79 @@ namespace Pastry_ManagementSystem.UI
 
         private void metroButton4_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            new UI.SystemAdminMenu().Show();
+            this.Hide();
+        }
+
+        private void itemIDSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ItemHelpScreen obj = new ItemHelpScreen();
+                obj.ShowDialog();
+                txtItemID.Text = obj.itemID;
+                txt_itemName.Text = obj.itemName;
+                txtWarehouse.Text = obj.WarehouseCode;
+                txtItemID.Focus();
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Exception(ex);
+            }
+        }
+
+        private void txtItemID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                itemIDSearch_Click(sender, e);
+            }
+            else if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                loadWarehouseTrans();
+                txt_availableQty.Focus();
+            }
+        }
+        void loadWarehouseTrans()
+        {
+            using (IDbConnection db=new SqlConnection(ConfigurationManager.ConnectionStrings["cn"].ConnectionString))
+            {
+                if (db.State == ConnectionState.Closed)
+                {
+                    db.Open();
+                    string sql = null;
+                    sql = $"Select required_lvl From Warehouse_Transaction_Table where referenceItemCode='{txtItemID.Text}'";
+                    IDataReader reader = db.ExecuteReader(sql);                                                      
+                    while (reader.Read())
+                    {
+                        txt_qtyrequired.Text = reader["required_lvl"].ToString();
+                    }
+                }
+            }
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_availableQty_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                metroButton1.Focus();
+            }
+        }
+
+        private void txt_empID_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                txtItemID.Focus();
+            }
         }
     }
 }
